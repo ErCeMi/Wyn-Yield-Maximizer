@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  unit: MyString
+  unit_type: MyString
+  bedroom: 1
+  group: MyString
+  tenantid: MyString
+  resident_name: MyString
+  resident_rent: 1
+  status: MyString
+  days_vacant: 2017-02-28
+  move_in: 2017-02-28
+  move_out: 2017-02-28
+  lease_from: 2017-02-28
+  lease_to: 2017-02-28
+  amenities: MyString
+  company: one
+
+two:
+  name: MyString
+  unit: MyString
+  unit_type: MyString
+  bedroom: 1
+  group: MyString
+  tenantid: MyString
+  resident_name: MyString
+  resident_rent: 1
+  status: MyString
+  days_vacant: 2017-02-28
+  move_in: 2017-02-28
+  move_out: 2017-02-28
+  lease_from: 2017-02-28
+  lease_to: 2017-02-28
+  amenities: MyString
+  company: two

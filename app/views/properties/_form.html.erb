@@ -1,0 +1,97 @@
+<%= form_for(property) do |f| %>
+  <% if property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :unit %>
+    <%= f.text_field :unit %>
+  </div>
+
+  <div class="field">
+    <%= f.label :unit_type %>
+    <%= f.text_field :unit_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bedroom %>
+    <%= f.number_field :bedroom %>
+  </div>
+
+  <div class="field">
+    <%= f.label :group %>
+    <%= f.text_field :group %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tenantid %>
+    <%= f.text_field :tenantid %>
+  </div>
+
+  <div class="field">
+    <%= f.label :resident_name %>
+    <%= f.text_field :resident_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :resident_rent %>
+    <%= f.number_field :resident_rent %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :days_vacant %>
+    <%= f.date_select :days_vacant %>
+  </div>
+
+  <div class="field">
+    <%= f.label :move_in %>
+    <%= f.date_select :move_in %>
+  </div>
+
+  <div class="field">
+    <%= f.label :move_out %>
+    <%= f.date_select :move_out %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lease_from %>
+    <%= f.date_select :lease_from %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lease_to %>
+    <%= f.date_select :lease_to %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amenities %>
+    <%= f.text_field :amenities %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_id %>
+    <%= f.text_field :company_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

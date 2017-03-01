@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Properties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Unit</th>
+      <th>Unit type</th>
+      <th>Bedroom</th>
+      <th>Group</th>
+      <th>Tenantid</th>
+      <th>Resident name</th>
+      <th>Resident rent</th>
+      <th>Status</th>
+      <th>Days Vacant</th>
+      <th>Move in</th>
+      <th>Move out</th>
+      <th>Lease from</th>
+      <th>Lease to</th>
+      <th>Amenities</th>
+      <th>Company</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @properties.each do |property| %>
+      <tr>
+        <td><%= property.name %></td>
+        <td><%= property.unit %></td>
+        <td><%= property.unit_type %></td>
+        <td><%= property.bedroom %></td>
+        <td><%= property.group %></td>
+        <td><%= property.tenantid %></td>
+        <td><%= property.resident_name %></td>
+        <td><%= property.resident_rent %></td>
+        <td><%= property.status %></td>
+        <td><%= property.days_vacant %></td>
+        <td><%= property.move_in %></td>
+        <td><%= property.move_out %></td>
+        <td><%= property.lease_from %></td>
+        <td><%= property.lease_to %></td>
+        <td><%= property.amenities %></td>
+        <td><%= property.company %></td>
+        <td><%= link_to 'Show', property %></td>
+        <td><%= link_to 'Edit', edit_property_path(property) %></td>
+        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Property', new_property_path %>

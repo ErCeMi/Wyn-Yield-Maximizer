@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @property.name %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @property.unit %>
+</p>
+
+<p>
+  <strong>Unit type:</strong>
+  <%= @property.unit_type %>
+</p>
+
+<p>
+  <strong>Bedroom:</strong>
+  <%= @property.bedroom %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @property.group %>
+</p>
+
+<p>
+  <strong>Tenantid:</strong>
+  <%= @property.tenantid %>
+</p>
+
+<p>
+  <strong>Resident name:</strong>
+  <%= @property.resident_name %>
+</p>
+
+<p>
+  <strong>Resident rent:</strong>
+  <%= @property.resident_rent %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @property.status %>
+</p>
+
+<p>
+  <strong>When available:</strong>
+  <%= @property.days_vacant %>
+</p>
+
+<p>
+  <strong>Move in:</strong>
+  <%= @property.move_in %>
+</p>
+
+<p>
+  <strong>Move out:</strong>
+  <%= @property.move_out %>
+</p>
+
+<p>
+  <strong>Lease from:</strong>
+  <%= @property.lease_from %>
+</p>
+
+<p>
+  <strong>Lease to:</strong>
+  <%= @property.lease_to %>
+</p>
+
+<p>
+  <strong>Amenities:</strong>
+  <%= @property.amenities %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @property.company %>
+</p>
+
+<%= link_to 'Edit', edit_property_path(@property) %> |
+<%= link_to 'Back', properties_path %>
