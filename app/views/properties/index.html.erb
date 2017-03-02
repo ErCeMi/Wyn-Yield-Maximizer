@@ -26,6 +26,7 @@
   </thead>
 
   <tbody>
+
     <% @properties.each do |property| %>
       <tr>
         <td><%= property.name %></td>
@@ -44,6 +45,9 @@
         <td><%= property.lease_to %></td>
         <td><%= property.amenities %></td>
         <td><%= property.company %></td>
+        <td>
+        <li><%= link_to 'Report', [:report, property] %></li>
+        <td>
         <td><%= link_to 'Show', property %></td>
         <td><%= link_to 'Edit', edit_property_path(property) %></td>
         <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>

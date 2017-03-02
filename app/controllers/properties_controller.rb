@@ -12,6 +12,17 @@ class PropertiesController < ApplicationController
   def show
   end
 
+  def report
+    
+
+    file = Tempfile.new('test')
+    doc_text = Report.text(@property)
+    Prawn::Document.generate(file) do
+      text doc_text
+    end
+    send_file file, :type=>"application/pdf", :x_sendfile=>true
+  end
+
   # GET /properties/new
   def new
     @property = Property.new
