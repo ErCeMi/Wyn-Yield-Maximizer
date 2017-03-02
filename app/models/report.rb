@@ -3,6 +3,9 @@ require 'date'
 @@prices = []
 @@units = []
 @@price_spread = []
+@@number_of_properties = Property.distinct.count('name')
+@@unique_properties = Property.uniq.pluck(:name)
+@@unique_bedrooms = [1,2,3]
 @@vacant = Property.where(group: "Vacant Unrented")
 @@notice = Property.where(group: "Notice Unrented")
 @@available = @@vacant + @@notice
@@ -16,7 +19,7 @@ require 'date'
 end
 
 # Rankings
-@@t7months = 7.months.from_now.strftime("%m/%Y")
+@@t7months = 0.months.from_now.strftime("%m/%Y")
 @@t8months = 8.months.from_now.strftime("%m/%Y")
 @@t9months = 9.months.from_now.strftime("%m/%Y")
 @@t10months = 10.months.from_now.strftime("%m/%Y")
@@ -36,14 +39,24 @@ end
 @@t24months = 24.months.from_now.strftime("%m/%Y")
 @@lease_to_array = []
 @@lease_to_array_formated = []
+@@rank = []
 @@available.as_json.each {|i| @@lease_to_array << i["lease_to"] }
 @@lease_to_array.each {|i| @@lease_to_array_formated << i.strftime("%m/%Y") if i != nil}
-#0002/17
+
+
+@@unique_properties.each { |a| @@unique_bedrooms.each { |b| @@rank << Property.where("name = ? AND bedroom = ?", a, b).as_json(only: [:name, :bedroom, :lease_to])}}
+
+
+@@count = 0
+(0..@@rank.length).each {|a| @@rank[a - 1].each {|b| b["lease_to"] != nil ? (@@count += 1 if b["lease_to"].strftime("%m/%Y").to_s == @@t7months.to_s) : (@@count + 0)}}
+
+
+
 class Report
 
 
   def self.text(property)
-     "#{@@t7months}"
+     "#{@@rank[0]}"
   end
 
-  end
+end
