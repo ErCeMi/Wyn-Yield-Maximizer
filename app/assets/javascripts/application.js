@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$( document ).on('turbolinks:load', function() {
+  $('.parallax').parallax();
+  console.log("It works on each visit!")
+})
