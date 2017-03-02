@@ -6,9 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
+require 'open-uri'
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'pmdata.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1') #skip_blanks: true)#.reject { |row| row.all?(&:nil?) }
 
 csv.each do |row|
   t = Property.new
@@ -24,10 +25,10 @@ csv.each do |row|
   t.unit_rent = row['unit_rent']
   t.status = row['status']
   t.days_vacant = row['days_vacant']
-  t.move_in = row['move_in']
-  t.move_out = row['move_out']
-  t.lease_from = row['lease_from']
-  t.lease_to = row['lease_to']
+  t.move_in = row['move_in'] ? Date.strptime(row['move_in'], '%m/%d/%y') : nil
+  t.move_out = row['move_out'] ? Date.strptime(row['move_out'], '%m/%d/%y') : nil
+  t.lease_from = row['lease_from'] ? Date.strptime(row['lease_from'], '%m/%d/%y') : nil
+  t.lease_to = row['lease_to'] ? Date.strptime(row['lease_to'], '%m/%d/%y') : nil
   t.amenities = row['amenities']
   t.company_id = row['company_id']
   t.save!
