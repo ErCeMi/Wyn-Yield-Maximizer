@@ -1,4 +1,3 @@
-array = [1,2,3,4]
-array.map!{|x|x == 4 ? 'Z' : x}
+z = {"name" => "ricky"}.merge("pi" => 4)
 
-puts array
+print z
