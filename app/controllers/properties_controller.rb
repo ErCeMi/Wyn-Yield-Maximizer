@@ -9,7 +9,7 @@ class PropertiesController < ApplicationController
     #@prices = []
     #@units = []
     #@price_spread = []
-    #@number_of_properties = Property.distinct.count('name')
+    @number_of_properties = Property.distinct.count('name')
     @unique_properties = Property.uniq.pluck(:name)
     @unique_bedrooms = [1,2,3]
     @vacant = Property.where(group: "Vacant Unrented")
@@ -44,246 +44,255 @@ class PropertiesController < ApplicationController
     @t23months = 23.months.from_now.strftime("%m/%Y"),
     @t24months = 24.months.from_now.strftime("%m/%Y")]
 
-    @try=[
-    @t1prop1bdrm = [
-    @t1stprop1bdrm7months = 0,
-    @t1stprop1bdrm8months = 0,   #7 months
-    @t1stprop1bdrm9months = 0,
-    @t1stprop1bdrm10months = 0,
-    @t1stprop1bdrm11months = 0,
-    @t1stprop1bdrm12months = 0,
-    @t1stprop1bdrm13months = 0,
-    @t1stprop1bdrm14months = 0,
-    @t1stprop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop1bdrm21months = 0,
-    @t1stprop1bdrm22months = 0,
-    @t1stprop1bdrm23months = 0,
-    @t1stprop1bdrm24months = 0],
+    # @array_of_rankings_per_bedroom_per_prop=[
+    # @t1prop1bdrm = [
+    # @t1stprop1bdrm7months = 0,
+    # @t1stprop1bdrm8months = 0,   #7 months
+    # @t1stprop1bdrm9months = 0,
+    # @t1stprop1bdrm10months = 0,
+    # @t1stprop1bdrm11months = 0,
+    # @t1stprop1bdrm12months = 0,
+    # @t1stprop1bdrm13months = 0,
+    # @t1stprop1bdrm14months = 0,
+    # @t1stprop1bdrm15months = 0,
+    # @t1stprop1bdrm16months = 0,
+    # @t1stprop1bdrm17months = 0,
+    # @t1stprop1bdrm18months = 0,
+    # @t1stprop1bdrm19months = 0,
+    # @t1stprop1bdrm20months = 0,
+    # @t1stprop1bdrm21months = 0,
+    # @t1stprop1bdrm22months = 0,
+    # @t1stprop1bdrm23months = 0,
+    # @t1stprop1bdrm24months = 0],
+    #
+    # @t1prop2bdrm= [
+    # @t1stprop2bdrm7months = 0,
+    # @t1stprop2bdrm8months = 0,   #7 months
+    # @t1stprop2bdrm9months = 0,
+    # @t1stprop2bdrm10months = 0,
+    # @t1stprop2bdrm11months = 0,
+    # @t1stprop2bdrm12months = 0,
+    # @t1stprop2bdrm13months = 0,
+    # @t1stprop2bdrm14months = 0,
+    # @t1stprop2bdrm15months = 0,
+    # @t1stprop2bdrm16months = 0,
+    # @t1stprop2bdrm17months = 0,
+    # @t1stprop2bdrm18months = 0,
+    # @t1stprop2bdrm19months = 0,
+    # @t1stprop2bdrm20months = 0,
+    # @t1stprop2bdrm21months = 0,
+    # @t1stprop2bdrm22months = 0,
+    # @t1stprop2bdrm23months = 0,
+    # @t1stprop2bdrm24months = 0],
+    #
+    # @t1prop3bdrm = [
+    # @t1stprop3bdrm7months = 0,
+    # @t1stprop3bdrm8months = 0,   #7 months
+    # @t1stprop3bdrm9months = 0,
+    # @t1stprop3bdrm10months = 0,
+    # @t1stprop3bdrm11months = 0,
+    # @t1stprop3bdrm12months = 0,
+    # @t1stprop3bdrm13months = 0,
+    # @t1stprop3bdrm14months = 0,
+    # @t1stprop3bdrm15months = 0,
+    # @t1stprop3bdrm16months = 0,
+    # @t1stprop3bdrm17months = 0,
+    # @t1stprop3bdrm18months = 0,
+    # @t1stprop3bdrm19months = 0,
+    # @t1stprop3bdrm20months = 0,
+    # @t1stprop3bdrm21months = 0,
+    # @t1stprop3bdrm22months = 0,
+    # @t1stprop3bdrm23months = 0,
+    # @t1stprop3bdrm24months = 0],
+    #
+    # @t2prop1bdrm = [
+    # @t2prop1bdrm7months = 0,
+    # @t2prop2bdrm8months = 0,   #7 months
+    # @t2prop2bdrm9months = 0,
+    # @t2prop1bdrm10months = 0,
+    # @t2prop1bdrm11months = 0,
+    # @t2prop1bdrm12months = 0,
+    # @t2prop1bdrm13months = 0,
+    # @t2tprop1bdrm14months = 0,
+    # @t2prop1bdrm15months = 0,
+    # @t1stprop1bdrm16months = 0,
+    # @t1stprop1bdrm17months = 0,
+    # @t1stprop1bdrm18months = 0,
+    # @t1stprop1bdrm19months = 0,
+    # @t1stprop1bdrm20months = 0,
+    # @t1stprop2bdrm21months = 0,
+    # @t1stprop2bdrm22months = 0,
+    # @t2prop2bdrm23months = 0,
+    # @t2prop2bdrm24months = 0],
+    #
+    # @t2prop2bdrm = [
+    # @t1stprop2bdrm7months = 0,
+    # @t1stprop2bdrm8months = 0,   #7 months
+    # @t1stprop2bdrm9months = 0,
+    # @t1stprop1bdrm10months = 0,
+    # @t1stprop1bdrm11months = 0,
+    # @t1stprop1bdrm12months = 0,
+    # @t1stprop1bdrm13months = 0,
+    # @t1stprop1bdrm14months = 0,
+    # @t1stprop1bdrm15months = 0,
+    # @t1stprop1bdrm16months = 0,
+    # @t1stprop1bdrm17months = 0,
+    # @t1stprop1bdrm18months = 0,
+    # @t1stprop1bdrm19months = 0,
+    # @t1stprop1bdrm20months = 0,
+    # @t1stprop2bdrm21months = 0,
+    # @t1stprop2bdrm22months = 0,
+    # @t1stprop2bdrm23months = 0,
+    # @t1stprop2bdrm24months = 0],
+    #
+    # @t2prop3bdrm = [
+    # @t1stprop2bdrm7months = 0,
+    # @t1stprop2bdrm8months = 0,   #7 months
+    # @t1stprop2bdrm9months = 0,
+    # @t1stprop1bdrm10months = 0,
+    # @t1stprop1bdrm11months = 0,
+    # @t1stprop1bdrm12months = 0,
+    # @t1stprop1bdrm13months = 0,
+    # @t1stprop1bdrm14months = 0,
+    # @t1stprop1bdrm15months = 0,
+    # @t1stprop1bdrm16months = 0,
+    # @t1stprop1bdrm17months = 0,
+    # @t1stprop1bdrm18months = 0,
+    # @t1stprop1bdrm19months = 0,
+    # @t1stprop1bdrm20months = 0,
+    # @t1stprop2bdrm21months = 0,
+    # @t1stprop2bdrm22months = 0,
+    # @t1stprop2bdrm23months = 0,
+    # @t1stprop2bdrm24months = 0],
+    #
+    # @t3prop1bdrm = [
+    # @t1stprop2bdrm7months = 0,
+    # @t1stprop2bdrm8months = 0,   #7 months
+    # @t1stprop2bdrm9months = 0,
+    # @t1stprop1bdrm10months = 0,
+    # @t1stprop1bdrm11months = 0,
+    # @t1stprop1bdrm12months = 0,
+    # @t1stprop1bdrm13months = 0,
+    # @t1stprop1bdrm14months = 0,
+    # @t1stprop1bdrm15months = 0,
+    # @t1stprop1bdrm16months = 0,
+    # @t1stprop1bdrm17months = 0,
+    # @t1stprop1bdrm18months = 0,
+    # @t1stprop1bdrm19months = 0,
+    # @t1stprop1bdrm20months = 0,
+    # @t1stprop2bdrm21months = 0,
+    # @t1stprop2bdrm22months = 0,
+    # @t1stprop2bdrm23months = 0,
+    # @t1stprop2bdrm24months = 0],
+    #
+    # @t3prop2bdrm = [
+    # @t1stprop2bdrm7months = 0,
+    # @t1stprop2bdrm8months = 0,   #7 months
+    # @t1stprop2bdrm9months = 0,
+    # @t1stprop1bdrm10months = 0,
+    # @t1stprop1bdrm11months = 0,
+    # @t1stprop1bdrm12months = 0,
+    # @t1stprop1bdrm13months = 0,
+    # @t1stprop1bdrm14months = 0,
+    # @t1stprop1bdrm15months = 0,
+    # @t1stprop1bdrm16months = 0,
+    # @t1stprop1bdrm17months = 0,
+    # @t1stprop1bdrm18months = 0,
+    # @t1stprop1bdrm19months = 0,
+    # @t1stprop1bdrm20months = 0,
+    # @t1stprop2bdrm21months = 0,
+    # @t1stprop2bdrm22months = 0,
+    # @t1stprop2bdrm23months = 0,
+    # @t1stprop2bdrm24months = 0],
+    #
+    # @t3prop3bdrm = [
+    # @t1stprop2bdrm7months = 0,
+    # @t1stprop2bdrm8months = 0,   #7 months
+    # @t1stprop2bdrm9months = 0,
+    # @t1stprop1bdrm10months = 0,
+    # @t1stprop1bdrm11months = 0,
+    # @t1stprop1bdrm12months = 0,
+    # @t1stprop1bdrm13months = 0,
+    # @t1stprop1bdrm14months = 0,
+    # @t1stprop1bdrm15months = 0,
+    # @t1stprop1bdrm16months = 0,
+    # @t1stprop1bdrm17months = 0,
+    # @t1stprop1bdrm18months = 0,
+    # @t1stprop1bdrm19months = 0,
+    # @t1stprop1bdrm20months = 0,
+    # @t1stprop2bdrm21months = 0,
+    # @t1stprop2bdrm22months = 0,
+    # @t1stprop2bdrm23months = 0,
+    # @t1stprop2bdrm24months = 0],
+    #
+    # @t4prop1bdrm = [
+    # @t1stprop2bdrm7months = 0,
+    # @t1stprop2bdrm8months = 0,   #7 months
+    # @t1stprop2bdrm9months = 0,
+    # @t1stprop1bdrm10months = 0,
+    # @t1stprop1bdrm11months = 0,
+    # @t1stprop1bdrm12months = 0,
+    # @t1stprop1bdrm13months = 0,
+    # @t1stprop1bdrm14months = 0,
+    # @t1stprop1bdrm15months = 0,
+    # @t1stprop1bdrm16months = 0,
+    # @t1stprop1bdrm17months = 0,
+    # @t1stprop1bdrm18months = 0,
+    # @t1stprop1bdrm19months = 0,
+    # @t1stprop1bdrm20months = 0,
+    # @t1stprop2bdrm21months = 0,
+    # @t1stprop2bdrm22months = 0,
+    # @t1stprop2bdrm23months = 0,
+    # @t1stprop2bdrm24months = 0],
+    #
+    # @t4prop2bdrm = [
+    # @t1stprop2bdrm7months = 0,
+    # @t1stprop2bdrm8months = 0,   #7 months
+    # @t1stprop2bdrm9months = 0,
+    # @t1stprop2bdrm10months = 0,
+    # @t1stprop2bdrm11months = 0,
+    # @t1stprop2bdrm12months = 0,
+    # @t1stprop2bdrm13months = 0,
+    # @t1stprop2bdrm14months = 0,
+    # @t1stprop2bdrm15months = 0,
+    # @t1stprop2bdrm16months = 0,
+    # @t1stprop2bdrm17months = 0,
+    # @t1stprop2bdrm18months = 0,
+    # @t1stprop2bdrm19months = 0,
+    # @t1stprop2bdrm20months = 0,
+    # @t1stprop2bdrm21months = 0,
+    # @t1stprop2bdrm22months = 0,
+    # @t1stprop2bdrm23months = 0,
+    # @t1stprop2bdrm24months = 0],
+    #
+    # @t4prop3bdrm = [
+    # @t4prop3bdrm7months = 0,
+    # @t4prop3bdrm8months = 0,   #7 months
+    # @t4prop3bdrm9months = 0,
+    # @t4prop3bdrm10months = 0,
+    # @t4prop3bdrm11months = 0,
+    # @t4prop3bdrm12months = 0,
+    # @t4prop3bdrm13months = 0,
+    # @t4prop3bdrm14months = 0,
+    # @t4prop3bdrm15months = 0,
+    # @t4prop3bdrm16months = 0,
+    # @t4prop3bdrm17months = 0,
+    # @t4prop3bdrm18months = 0,
+    # @t4prop3bdrm19months = 0,
+    # @t4prop3bdrm20months = 0,
+    # @t4prop3bdrm21months = 0,
+    # @t4prop3bdrm22months = 0,
+    # @t4prop3bdrm23months = 0,
+    # @t4prop3bdrm24months = 0]]
 
-    @t1prop2bdrm= [
-    @t1stprop2bdrm7months = 0,
-    @t1stprop2bdrm8months = 0,   #7 months
-    @t1stprop2bdrm9months = 0,
-    @t1stprop2bdrm10months = 0,
-    @t1stprop2bdrm11months = 0,
-    @t1stprop2bdrm12months = 0,
-    @t1stprop2bdrm13months = 0,
-    @t1stprop2bdrm14months = 0,
-    @t1stprop2bdrm15months = 0,
-    @t1stprop2bdrm16months = 0,
-    @t1stprop2bdrm17months = 0,
-    @t1stprop2bdrm18months = 0,
-    @t1stprop2bdrm19months = 0,
-    @t1stprop2bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t1stprop2bdrm23months = 0,
-    @t1stprop2bdrm24months = 0],
 
-    @t1prop3bdrm = [
-    @t1stprop3bdrm7months = 0,
-    @t1stprop3bdrm8months = 0,   #7 months
-    @t1stprop3bdrm9months = 0,
-    @t1stprop3bdrm10months = 0,
-    @t1stprop3bdrm11months = 0,
-    @t1stprop3bdrm12months = 0,
-    @t1stprop3bdrm13months = 0,
-    @t1stprop3bdrm14months = 0,
-    @t1stprop3bdrm15months = 0,
-    @t1stprop3bdrm16months = 0,
-    @t1stprop3bdrm17months = 0,
-    @t1stprop3bdrm18months = 0,
-    @t1stprop3bdrm19months = 0,
-    @t1stprop3bdrm20months = 0,
-    @t1stprop3bdrm21months = 0,
-    @t1stprop3bdrm22months = 0,
-    @t1stprop3bdrm23months = 0,
-    @t1stprop3bdrm24months = 0],
+    @array_of_rankings_per_bedroom_per_prop = []
 
-    @t2prop1bdrm = [
-    @t2prop1bdrm7months = 0,
-    @t2prop2bdrm8months = 0,   #7 months
-    @t2prop2bdrm9months = 0,
-    @t2prop1bdrm10months = 0,
-    @t2prop1bdrm11months = 0,
-    @t2prop1bdrm12months = 0,
-    @t2prop1bdrm13months = 0,
-    @t2tprop1bdrm14months = 0,
-    @t2prop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t2prop2bdrm23months = 0,
-    @t2prop2bdrm24months = 0],
+    (@number_of_properties * 3).times do
+      @array_of_rankings_per_bedroom_per_prop << [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-    @t2prop2bdrm = [
-    @t1stprop2bdrm7months = 0,
-    @t1stprop2bdrm8months = 0,   #7 months
-    @t1stprop2bdrm9months = 0,
-    @t1stprop1bdrm10months = 0,
-    @t1stprop1bdrm11months = 0,
-    @t1stprop1bdrm12months = 0,
-    @t1stprop1bdrm13months = 0,
-    @t1stprop1bdrm14months = 0,
-    @t1stprop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t1stprop2bdrm23months = 0,
-    @t1stprop2bdrm24months = 0],
+      end
 
-    @t2prop3bdrm = [
-    @t1stprop2bdrm7months = 0,
-    @t1stprop2bdrm8months = 0,   #7 months
-    @t1stprop2bdrm9months = 0,
-    @t1stprop1bdrm10months = 0,
-    @t1stprop1bdrm11months = 0,
-    @t1stprop1bdrm12months = 0,
-    @t1stprop1bdrm13months = 0,
-    @t1stprop1bdrm14months = 0,
-    @t1stprop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t1stprop2bdrm23months = 0,
-    @t1stprop2bdrm24months = 0],
-
-    @t3prop1bdrm = [
-    @t1stprop2bdrm7months = 0,
-    @t1stprop2bdrm8months = 0,   #7 months
-    @t1stprop2bdrm9months = 0,
-    @t1stprop1bdrm10months = 0,
-    @t1stprop1bdrm11months = 0,
-    @t1stprop1bdrm12months = 0,
-    @t1stprop1bdrm13months = 0,
-    @t1stprop1bdrm14months = 0,
-    @t1stprop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t1stprop2bdrm23months = 0,
-    @t1stprop2bdrm24months = 0],
-
-    @t3prop2bdrm = [
-    @t1stprop2bdrm7months = 0,
-    @t1stprop2bdrm8months = 0,   #7 months
-    @t1stprop2bdrm9months = 0,
-    @t1stprop1bdrm10months = 0,
-    @t1stprop1bdrm11months = 0,
-    @t1stprop1bdrm12months = 0,
-    @t1stprop1bdrm13months = 0,
-    @t1stprop1bdrm14months = 0,
-    @t1stprop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t1stprop2bdrm23months = 0,
-    @t1stprop2bdrm24months = 0],
-
-    @t3prop3bdrm = [
-    @t1stprop2bdrm7months = 0,
-    @t1stprop2bdrm8months = 0,   #7 months
-    @t1stprop2bdrm9months = 0,
-    @t1stprop1bdrm10months = 0,
-    @t1stprop1bdrm11months = 0,
-    @t1stprop1bdrm12months = 0,
-    @t1stprop1bdrm13months = 0,
-    @t1stprop1bdrm14months = 0,
-    @t1stprop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t1stprop2bdrm23months = 0,
-    @t1stprop2bdrm24months = 0],
-
-    @t4prop1bdrm = [
-    @t1stprop2bdrm7months = 0,
-    @t1stprop2bdrm8months = 0,   #7 months
-    @t1stprop2bdrm9months = 0,
-    @t1stprop1bdrm10months = 0,
-    @t1stprop1bdrm11months = 0,
-    @t1stprop1bdrm12months = 0,
-    @t1stprop1bdrm13months = 0,
-    @t1stprop1bdrm14months = 0,
-    @t1stprop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t1stprop2bdrm23months = 0,
-    @t1stprop2bdrm24months = 0],
-
-    @t4prop2bdrm = [
-    @t1stprop2bdrm7months = 0,
-    @t1stprop2bdrm8months = 0,   #7 months
-    @t1stprop2bdrm9months = 0,
-    @t1stprop1bdrm10months = 0,
-    @t1stprop1bdrm11months = 0,
-    @t1stprop1bdrm12months = 0,
-    @t1stprop1bdrm13months = 0,
-    @t1stprop1bdrm14months = 0,
-    @t1stprop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t1stprop2bdrm23months = 0,
-    @t1stprop2bdrm24months = 0],
-
-    @t4prop3bdrm = [
-    @t1stprop2bdrm7months = 0,
-    @t1stprop2bdrm8months = 0,   #7 months
-    @t1stprop2bdrm9months = 0,
-    @t1stprop1bdrm10months = 0,
-    @t1stprop1bdrm11months = 0,
-    @t1stprop1bdrm12months = 0,
-    @t1stprop1bdrm13months = 0,
-    @t1stprop1bdrm14months = 0,
-    @t1stprop1bdrm15months = 0,
-    @t1stprop1bdrm16months = 0,
-    @t1stprop1bdrm17months = 0,
-    @t1stprop1bdrm18months = 0,
-    @t1stprop1bdrm19months = 0,
-    @t1stprop1bdrm20months = 0,
-    @t1stprop2bdrm21months = 0,
-    @t1stprop2bdrm22months = 0,
-    @t1stprop2bdrm23months = 0,
-    @t1stprop2bdrm24months = 0]]
 
     #@lease_to_array = []
     #@lease_to_array_formated = []
@@ -309,36 +318,43 @@ class PropertiesController < ApplicationController
 
     #sets values to # of expirations per bucket
     @garbage = 0
-    (0..(@rank.length - 1)).each do |a|
-    case a
-    when 0
-      @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t1prop1bdrm.map! {|x| x == @t1prop1bdrm[@months_array.index(c)] ? (@t1prop1bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 1
-      @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t1prop2bdrm.map! {|x| x == @t1prop2bdrm[@months_array.index(c)] ? (@t1prop2bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 2
-      @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t1prop3bdrm.map! {|x| x == @t1prop3bdrm[@months_array.index(c)] ? (@t1prop3bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 3
-      @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t2prop1bdrm.map! {|x| x == @t2prop1bdrm[@months_array.index(c)] ? (@t2prop1bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 4
-    @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t2prop2bdrm.map! {|x| x == @t2prop2bdrm[@months_array.index(c)] ? (@t2prop2bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 5
-      @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t2prop3bdrm.map! {|x| x == @t2prop3bdrm[@months_array.index(c)] ? (@t2prop3bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 6
-    @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t3prop1bdrm.map! {|x| x == @t3prop1bdrm[@months_array.index(c)] ? (@t3prop1bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 7
-      @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t3prop2bdrm.map! {|x| x == @t3prop2bdrm[@months_array.index(c)] ? (@t3prop2bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 8
-    @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t3prop3bdrm.map! {|x| x == @t3prop3bdrm[@months_array.index(c)] ? (@t3prop3bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 9
-      @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t4prop1bdrm.map! {|x| x == @t4prop1bdrm[@months_array.index(c)] ? (@t4prop1bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 10
-      @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t4prop2bdrm.map! {|x| x == @t4prop2bdrm[@months_array.index(c)] ? (@t4prop2bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    when 11
-      @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@t4prop3bdrm.map! {|x| x == @t4prop3bdrm[@months_array.index(c)] ? (@t4prop3bdrm[@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
-    else
-      @garbage +=1
+    # (0..(@rank.length - 1)).each do |a|
+    # case a
+    # when 0
+    #   @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[0].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[0][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[0][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 1
+    #   @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[1].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[1][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[1][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 2
+    #   @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[2].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[2][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[2][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 3
+    #   @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[3].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[3][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[3][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 4
+    # @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[4].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[4][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[4][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 5
+    #   @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[5].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[5][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[5][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 6
+    # @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[6].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[6][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[6][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 7
+    #   @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[7].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[7][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[7][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 8
+    # @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[8].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[8][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[8][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 9
+    #   @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[9].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[9][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[9][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 10
+    #   @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[10].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[10][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[10][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # when 11
+    #   @rank[a].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[11].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[11][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[11][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
+    # else
+    #   @garbage +=1
+    # end
+    # end
+
+    (0..(@rank.length - 1)).each do |z|
+
+      @rank[z].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[z].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[z][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[z][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
     end
-    end
+
+
 
     #@testdummy = [
     #@t1stprop2bdrm7months = 100,
@@ -364,10 +380,10 @@ class PropertiesController < ApplicationController
 
     #@testdummy_ranks = @testdummy.map!{|i| @sorted.index(i) + 1}
 
-    #@bbb = (@try[2].sort.uniq
+    #@bbb = (@array_of_rankings_per_bedroom_per_prop[2].sort.uniq
 
     #makes values equal to rank
-    @try.each do |i|
+    @array_of_rankings_per_bedroom_per_prop.each do |i|
       z = i.sort.uniq
       i.map! do |b|
         (z.index(b) + 1)
@@ -375,7 +391,7 @@ class PropertiesController < ApplicationController
     end
 
     # makes values equal to spread
-    @try.each do |i|
+    @array_of_rankings_per_bedroom_per_prop.each do |i|
       i.map! do |b|
         ((((b-1).to_f)/11) * 50).round(0)
       end
@@ -387,7 +403,7 @@ class PropertiesController < ApplicationController
     #      "nineteen", "twenty", "twenty-one","twenty-two",
     #       "twenty-three", "twenty-four"]
     # @zip = []
-    # @try.each do |z|
+    # @array_of_rankings_per_bedroom_per_prop.each do |z|
     #   @zip << z.zip(@offerings)
     # end
 
@@ -401,40 +417,64 @@ class PropertiesController < ApplicationController
 
         @offerings.each do |a, b|
             if i["name"] == @unique_properties[0] && i["bedroom"] == 1
-              i.merge!(a => (@try[0][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+                i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[0][b] + i["unit_rent"]))
+              end
 
             elsif i["name"] == @unique_properties[0] && i["bedroom"] == 2
-              i.merge!(a => (@try[1][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+                i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[1][b] + i["unit_rent"]))
+              end
 
             elsif i["name"] == @unique_properties[0] && i["bedroom"] == 3
-              i.merge!(a => (@try[2][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[2][b] + i["unit_rent"]))
+            end
 
             elsif i["name"] == @unique_properties[1] && i["bedroom"] == 1
-              i.merge!(a => (@try[3][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[3][b] + i["unit_rent"]))
+            end
 
             elsif i["name"] == @unique_properties[1] && i["bedroom"] == 2
-              i.merge!(a => (@try[4][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[4][b] + i["unit_rent"]))
+            end
 
             elsif i["name"] == @unique_properties[1] && i["bedroom"] == 3
-              i.merge!(a => (@try[5][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[5][b] + i["unit_rent"]))
+            end
 
             elsif i["name"] == @unique_properties[2] && i["bedroom"] == 1
-              i.merge!(a => (@try[6][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[6][b] + i["unit_rent"]))
+            end
 
             elsif i["name"] == @unique_properties[2] && i["bedroom"] == 2
-              i.merge!(a => (@try[7][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[7][b] + i["unit_rent"]))
+            end
 
             elsif i["name"] == @unique_properties[2] && i["bedroom"] == 3
-              i.merge!(a => (@try[8][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[8][b] + i["unit_rent"]))
+            end
 
             elsif i["name"] == @unique_properties[3] && i["bedroom"] == 1
-              i.merge!(a => (@try[9][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[9][b] + i["unit_rent"]))
+            end
 
             elsif i["name"] == @unique_properties[3] && i["bedroom"] == 2
-              i.merge!(a => (@try[10][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[10][b] + i["unit_rent"]))
+            end
 
             elsif i["name"] == @unique_properties[3] && i["bedroom"] == 3
-              i.merge!(a => (@try[11][b] + i["unit_rent"]))
+              @offerings.each do |a, b|
+              i.merge!(a => (@array_of_rankings_per_bedroom_per_prop[11][b] + i["unit_rent"]))
+            end
             else
               @garbage += 1
             end
@@ -443,7 +483,7 @@ class PropertiesController < ApplicationController
 
 
     #@reportAvailable.each do |i|
-      #i.merge!(@try)
+      #i.merge!(@array_of_rankings_per_bedroom_per_prop)
 
 
     #a = [98.5, 85, 50, 50, 23, 0, 0, 0]
