@@ -381,242 +381,66 @@ class PropertiesController < ApplicationController
       end
     end
 
-    @reportAvailable.each do |i|
-      if i["name"] == @unique_properties[0] && i["bedroom"] == 1
-        i.merge!("seven" => (@try[0][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[0][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[0][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[0][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[0][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[0][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[0][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[0][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[0][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[0][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[0][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[0][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[0][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[0][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[0][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[0][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[0][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[0][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[0] && i["bedroom"] == 2
-        i.merge!("seven" => (@try[0][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[0][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[0][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[0][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[0][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[0][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[0][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[0][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[0][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[0][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[0][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[0][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[0][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[0][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[0][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[0][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[0][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[0][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[0] && i["bedroom"] == 3
-        i.merge!("seven" => (@try[0][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[0][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[0][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[0][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[0][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[0][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[0][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[0][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[0][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[0][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[0][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[0][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[0][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[0][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[0][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[0][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[0][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[0][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[1] && i["bedroom"] == 1
-        i.merge!("seven" => (@try[1][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[1][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[1][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[1][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[1][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[1][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[1][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[1][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[1][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[1][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[1][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[1][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[1][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[1][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[1][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[1][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[1][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[1][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[1] && i["bedroom"] == 2
-        i.merge!("seven" => (@try[2][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[2][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[2][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[2][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[2][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[2][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[2][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[2][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[2][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[2][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[2][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[2][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[2][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[2][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[2][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[2][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[2][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[2][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[1] && i["bedroom"] == 3
-        i.merge!("seven" => (@try[3][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[3][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[3][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[3][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[3][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[3][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[3][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[3][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[3][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[3][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[3][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[3][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[3][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[3][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[3][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[3][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[3][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[3][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[2] && i["bedroom"] == 1
-        i.merge!("seven" => (@try[4][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[4][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[4][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[4][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[4][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[4][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[4][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[4][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[4][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[4][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[4][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[4][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[4][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[4][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[4][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[4][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[4][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[4][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[2] && i["bedroom"] == 2
-        i.merge!("seven" => (@try[5][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[5][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[5][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[5][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[5][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[5][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[5][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[5][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[5][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[5][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[5][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[5][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[5][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[5][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[5][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[5][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[5][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[5][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[2] && i["bedroom"] == 3
-        i.merge!("seven" => (@try[6][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[6][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[6][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[6][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[6][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[6][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[6][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[6][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[6][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[6][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[6][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[6][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[6][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[6][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[6][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[6][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[6][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[6][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[3] && i["bedroom"] == 1
-        i.merge!("seven" => (@try[7][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[7][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[7][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[7][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[7][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[7][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[7][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[7][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[7][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[7][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[7][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[7][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[7][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[7][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[7][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[7][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[7][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[7][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[3] && i["bedroom"] == 2
-        i.merge!("seven" => (@try[8][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[8][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[8][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[8][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[8][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[8][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[8][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[8][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[8][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[8][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[8][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[8][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[8][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[8][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[8][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[8][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[8][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[8][17] + i["unit_rent"]))
-      elsif i["name"] == @unique_properties[3] && i["bedroom"] == 3
-        i.merge!("seven" => (@try[9][0] + i["unit_rent"]))
-        i.merge!("eight" => (@try[9][1] + i["unit_rent"]))
-        i.merge!("nine" => (@try[9][2] + i["unit_rent"]))
-        i.merge!("ten" => (@try[9][3] + i["unit_rent"]))
-        i.merge!("eleven" => (@try[9][4] + i["unit_rent"]))
-        i.merge!("twelve" => (@try[9][5] + i["unit_rent"]))
-        i.merge!("thirteen" => (@try[9][6] + i["unit_rent"]))
-        i.merge!("fourteen" => (@try[9][7] + i["unit_rent"]))
-        i.merge!("fifteen" => (@try[9][8] + i["unit_rent"]))
-        i.merge!("sixteen" => (@try[9][9] + i["unit_rent"]))
-        i.merge!("seventeen" => (@try[9][10] + i["unit_rent"]))
-        i.merge!("eighteen" => (@try[9][11] + i["unit_rent"]))
-        i.merge!("nineteen" => (@try[9][12] + i["unit_rent"]))
-        i.merge!("twenty" => (@try[9][13] + i["unit_rent"]))
-        i.merge!("twenty-one" => (@try[9][14] + i["unit_rent"]))
-        i.merge!("twenty-two" => (@try[9][15] + i["unit_rent"]))
-        i.merge!("twenty-three" => (@try[9][16] + i["unit_rent"]))
-        i.merge!("twenty-four" => (@try[9][17] + i["unit_rent"]))
+    # @offerings = ["seven", "eight", "nine", "ten",
+    #    "elevel", "twelve", "thirteen", "fourteen",
+    #     "fifteen", "sixteen", "seventeen", "eighteen",
+    #      "nineteen", "twenty", "twenty-one","twenty-two",
+    #       "twenty-three", "twenty-four"]
+    # @zip = []
+    # @try.each do |z|
+    #   @zip << z.zip(@offerings)
+    # end
 
-      else
-        @garbage += 1
+      @offerings = [["seven", 0], ["eight", 1], ["nine", 2], ["ten", 3],
+          ["eleven", 4], ["twelve", 5], ["thirteen", 6], ["fourteen", 7],
+           ["fifteen", 8], ["sixteen", 9], ["seventeen", 10], ["eighteen", 11],
+            ["nineteen", 12], ["twenty", 13], ["twenty-one", 14],["twenty-two", 15],
+             ["twenty-three", 16], ["twenty-four", 17]]
+
+    @reportAvailable.each do |i|
+
+        @offerings.each do |a, b|
+            if i["name"] == @unique_properties[0] && i["bedroom"] == 1
+              i.merge!(a => (@try[0][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[0] && i["bedroom"] == 2
+              i.merge!(a => (@try[1][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[0] && i["bedroom"] == 3
+              i.merge!(a => (@try[2][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[1] && i["bedroom"] == 1
+              i.merge!(a => (@try[3][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[1] && i["bedroom"] == 2
+              i.merge!(a => (@try[4][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[1] && i["bedroom"] == 3
+              i.merge!(a => (@try[5][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[2] && i["bedroom"] == 1
+              i.merge!(a => (@try[6][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[2] && i["bedroom"] == 2
+              i.merge!(a => (@try[7][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[2] && i["bedroom"] == 3
+              i.merge!(a => (@try[8][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[3] && i["bedroom"] == 1
+              i.merge!(a => (@try[9][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[3] && i["bedroom"] == 2
+              i.merge!(a => (@try[10][b] + i["unit_rent"]))
+
+            elsif i["name"] == @unique_properties[3] && i["bedroom"] == 3
+              i.merge!(a => (@try[11][b] + i["unit_rent"]))
+            else
+              @garbage += 1
+            end
       end
     end
 
-    @tree = @reportAvailable[0]["name"]
 
     #@reportAvailable.each do |i|
       #i.merge!(@try)
