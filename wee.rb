@@ -1,32 +1,259 @@
-require 'date'
-a = [{"unit_rent"=>1926}, {"unit_rent"=>1936}, {"unit_rent"=>2016}, {"unit_rent"=>3026}, {"unit_rent"=>2191}, {"unit_rent"=>1871}, {"unit_rent"=>1891},
-   {"unit_rent"=>1891}, {"unit_rent"=>1966}, {"unit_rent"=>3266}, {"unit_rent"=>1881}, {"unit_rent"=>1831}, {"unit_rent"=>1886}, {"unit_rent"=>1956},
-    {"unit_rent"=>1836}, {"unit_rent"=>1831}, {"unit_rent"=>1631}, {"unit_rent"=>1616}, {"unit_rent"=>1856}, {"unit_rent"=>1631}, {"unit_rent"=>1831},
-     {"unit_rent"=>1846}, {"unit_rent"=>1831}, {"unit_rent"=>1711}, {"unit_rent"=>1721}, {"unit_rent"=>1721}, {"unit_rent"=>1721}, {"unit_rent"=>1721},
-      {"unit_rent"=>1756}, {"unit_rent"=>2181}, {"unit_rent"=>2191}, {"unit_rent"=>1876}, {"unit_rent"=>2141}, {"unit_rent"=>1906}, {"unit_rent"=>2346},
-       {"unit_rent"=>1916}, {"unit_rent"=>2231}, {"unit_rent"=>1936}, {"unit_rent"=>3321}, {"unit_rent"=>2381}, {"unit_rent"=>2366}, {"unit_rent"=>3011},
-        {"unit_rent"=>1801}, {"unit_rent"=>2196}, {"unit_rent"=>2136}, {"unit_rent"=>2136}, {"unit_rent"=>2146}, {"unit_rent"=>2116}, {"unit_rent"=>1821},
-         {"unit_rent"=>2}, {"unit_rent"=>2186}, {"unit_rent"=>2951}, {"unit_rent"=>1876}, {"unit_rent"=>2066}, {"unit_rent"=>2096}, {"unit_rent"=>3011},
-          {"unit_rent"=>1941}, {"unit_rent"=>2136}, {"unit_rent"=>3096}, {"unit_rent"=>2286}, {"unit_rent"=>2051}, {"unit_rent"=>2136}, {"unit_rent"=>2446},
-           {"unit_rent"=>2256}, {"unit_rent"=>2261}, {"unit_rent"=>2121}, {"unit_rent"=>3221}, {"unit_rent"=>2266}, {"unit_rent"=>2261}, {"unit_rent"=>1986},
-            {"unit_rent"=>2096}, {"unit_rent"=>2411}, {"unit_rent"=>2016}, {"unit_rent"=>2366}, {"unit_rent"=>2146}, {"unit_rent"=>2176}, {"unit_rent"=>1811},
-             {"unit_rent"=>2156}, {"unit_rent"=>2076}, {"unit_rent"=>2086}, {"unit_rent"=>2116}, {"unit_rent"=>1801}, {"unit_rent"=>2196}, {"unit_rent"=>1811},
-              {"unit_rent"=>2181}, {"unit_rent"=>2251}, {"unit_rent"=>1996}, {"unit_rent"=>1991}, {"unit_rent"=>2011}, {"unit_rent"=>2346}, {"unit_rent"=>2021},
-               {"unit_rent"=>2021}, {"unit_rent"=>2361}, {"unit_rent"=>2236}, {"unit_rent"=>2256}, {"unit_rent"=>1561}, {"unit_rent"=>1536}, {"unit_rent"=>1736},
-                {"unit_rent"=>1516}, {"unit_rent"=>1736}, {"unit_rent"=>1906}, {"unit_rent"=>1931}, {"unit_rent"=>2401}, {"unit_rent"=>1711}, {"unit_rent"=>2116},
-                 {"unit_rent"=>1546}, {"unit_rent"=>1596}, {"unit_rent"=>1546}, {"unit_rent"=>1736}, {"unit_rent"=>1546}, {"unit_rent"=>1546}, {"unit_rent"=>1831},
-                  {"unit_rent"=>1546}, {"unit_rent"=>1466}, {"unit_rent"=>1771}, {"unit_rent"=>1851}, {"unit_rent"=>1866}, {"unit_rent"=>1786}, {"unit_rent"=>1796},
-                   {"unit_rent"=>1976}, {"unit_rent"=>1786}, {"unit_rent"=>1861}, {"unit_rent"=>1786}, {"unit_rent"=>1786}, {"unit_rent"=>1831}, {"unit_rent"=>1741},
-                    {"unit_rent"=>1831}, {"unit_rent"=>1831}, {"unit_rent"=>1641}, {"unit_rent"=>1896}, {"unit_rent"=>1821}, {"unit_rent"=>1866}, {"unit_rent"=>1771},
-                     {"unit_rent"=>1816}, {"unit_rent"=>1601}, {"unit_rent"=>1786}, {"unit_rent"=>1616}, {"unit_rent"=>1631}, {"unit_rent"=>1631}, {"unit_rent"=>1786},
-                      {"unit_rent"=>1886}, {"unit_rent"=>1616}, {"unit_rent"=>1841}, {"unit_rent"=>1626}, {"unit_rent"=>1641}, {"unit_rent"=>1806}, {"unit_rent"=>1656},
-                       {"unit_rent"=>1686}, {"unit_rent"=>1526}, {"unit_rent"=>1711}, {"unit_rent"=>1346}, {"unit_rent"=>1711}, {"unit_rent"=>1721}, {"unit_rent"=>1721},
-                        {"unit_rent"=>1731}, {"unit_rent"=>1356}, {"unit_rent"=>1721}, {"unit_rent"=>1776}, {"unit_rent"=>2196}]
+# @names  = ["Tom", "Harry", "John"]
+# @emails = ["tom@gmail.com", "h@gmail.com", "j@gmail.com"]
+#
+# @list = @names.zip( @emails)
+#
+# print @list
 
+@try=[
+@t1prop1bdrm = [
+@t1stprop1bdrm7months = 0,
+@t1stprop1bdrm8months = 0,   #7 months
+@t1stprop1bdrm9months = 0,
+@t1stprop1bdrm10months = 0,
+@t1stprop1bdrm11months = 0,
+@t1stprop1bdrm12months = 0,
+@t1stprop1bdrm13months = 0,
+@t1stprop1bdrm14months = 0,
+@t1stprop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop1bdrm21months = 0,
+@t1stprop1bdrm22months = 0,
+@t1stprop1bdrm23months = 0,
+@t1stprop1bdrm24months = 0],
 
-bucket = []
-bucket2 = []
-a.each {|i| bucket << i["unit_rent"]}
-bucket.each {|i| bucket2 << i * 0.0225}
-#puts bucket2
-7.months.from_now
+@t1prop2bdrm= [
+@t1stprop2bdrm7months = 0,
+@t1stprop2bdrm8months = 0,   #7 months
+@t1stprop2bdrm9months = 0,
+@t1stprop2bdrm10months = 0,
+@t1stprop2bdrm11months = 0,
+@t1stprop2bdrm12months = 0,
+@t1stprop2bdrm13months = 0,
+@t1stprop2bdrm14months = 0,
+@t1stprop2bdrm15months = 0,
+@t1stprop2bdrm16months = 0,
+@t1stprop2bdrm17months = 0,
+@t1stprop2bdrm18months = 0,
+@t1stprop2bdrm19months = 0,
+@t1stprop2bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t1stprop2bdrm23months = 0,
+@t1stprop2bdrm24months = 0],
+
+@t1prop3bdrm = [
+@t1stprop3bdrm7months = 0,
+@t1stprop3bdrm8months = 0,   #7 months
+@t1stprop3bdrm9months = 0,
+@t1stprop3bdrm10months = 0,
+@t1stprop3bdrm11months = 0,
+@t1stprop3bdrm12months = 0,
+@t1stprop3bdrm13months = 0,
+@t1stprop3bdrm14months = 0,
+@t1stprop3bdrm15months = 0,
+@t1stprop3bdrm16months = 0,
+@t1stprop3bdrm17months = 0,
+@t1stprop3bdrm18months = 0,
+@t1stprop3bdrm19months = 0,
+@t1stprop3bdrm20months = 0,
+@t1stprop3bdrm21months = 0,
+@t1stprop3bdrm22months = 0,
+@t1stprop3bdrm23months = 0,
+@t1stprop3bdrm24months = 0],
+
+@t2prop1bdrm = [
+@t2prop1bdrm7months = 0,
+@t2prop2bdrm8months = 0,   #7 months
+@t2prop2bdrm9months = 0,
+@t2prop1bdrm10months = 0,
+@t2prop1bdrm11months = 0,
+@t2prop1bdrm12months = 0,
+@t2prop1bdrm13months = 0,
+@t2tprop1bdrm14months = 0,
+@t2prop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t2prop2bdrm23months = 0,
+@t2prop2bdrm24months = 0],
+
+@t2prop2bdrm = [
+@t1stprop2bdrm7months = 0,
+@t1stprop2bdrm8months = 0,   #7 months
+@t1stprop2bdrm9months = 0,
+@t1stprop1bdrm10months = 0,
+@t1stprop1bdrm11months = 0,
+@t1stprop1bdrm12months = 0,
+@t1stprop1bdrm13months = 0,
+@t1stprop1bdrm14months = 0,
+@t1stprop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t1stprop2bdrm23months = 0,
+@t1stprop2bdrm24months = 0],
+
+@t2prop3bdrm = [
+@t1stprop2bdrm7months = 0,
+@t1stprop2bdrm8months = 0,   #7 months
+@t1stprop2bdrm9months = 0,
+@t1stprop1bdrm10months = 0,
+@t1stprop1bdrm11months = 0,
+@t1stprop1bdrm12months = 0,
+@t1stprop1bdrm13months = 0,
+@t1stprop1bdrm14months = 0,
+@t1stprop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t1stprop2bdrm23months = 0,
+@t1stprop2bdrm24months = 0],
+
+@t3prop1bdrm = [
+@t1stprop2bdrm7months = 0,
+@t1stprop2bdrm8months = 0,   #7 months
+@t1stprop2bdrm9months = 0,
+@t1stprop1bdrm10months = 0,
+@t1stprop1bdrm11months = 0,
+@t1stprop1bdrm12months = 0,
+@t1stprop1bdrm13months = 0,
+@t1stprop1bdrm14months = 0,
+@t1stprop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t1stprop2bdrm23months = 0,
+@t1stprop2bdrm24months = 0],
+
+@t3prop2bdrm = [
+@t1stprop2bdrm7months = 0,
+@t1stprop2bdrm8months = 0,   #7 months
+@t1stprop2bdrm9months = 0,
+@t1stprop1bdrm10months = 0,
+@t1stprop1bdrm11months = 0,
+@t1stprop1bdrm12months = 0,
+@t1stprop1bdrm13months = 0,
+@t1stprop1bdrm14months = 0,
+@t1stprop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t1stprop2bdrm23months = 0,
+@t1stprop2bdrm24months = 0],
+
+@t3prop3bdrm = [
+@t1stprop2bdrm7months = 0,
+@t1stprop2bdrm8months = 0,   #7 months
+@t1stprop2bdrm9months = 0,
+@t1stprop1bdrm10months = 0,
+@t1stprop1bdrm11months = 0,
+@t1stprop1bdrm12months = 0,
+@t1stprop1bdrm13months = 0,
+@t1stprop1bdrm14months = 0,
+@t1stprop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t1stprop2bdrm23months = 0,
+@t1stprop2bdrm24months = 0],
+
+@t4prop1bdrm = [
+@t1stprop2bdrm7months = 0,
+@t1stprop2bdrm8months = 0,   #7 months
+@t1stprop2bdrm9months = 0,
+@t1stprop1bdrm10months = 0,
+@t1stprop1bdrm11months = 0,
+@t1stprop1bdrm12months = 0,
+@t1stprop1bdrm13months = 0,
+@t1stprop1bdrm14months = 0,
+@t1stprop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t1stprop2bdrm23months = 0,
+@t1stprop2bdrm24months = 0],
+
+@t4prop2bdrm = [
+@t1stprop2bdrm7months = 0,
+@t1stprop2bdrm8months = 0,   #7 months
+@t1stprop2bdrm9months = 0,
+@t1stprop1bdrm10months = 0,
+@t1stprop1bdrm11months = 0,
+@t1stprop1bdrm12months = 0,
+@t1stprop1bdrm13months = 0,
+@t1stprop1bdrm14months = 0,
+@t1stprop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t1stprop2bdrm23months = 0,
+@t1stprop2bdrm24months = 0],
+
+@t4prop3bdrm = [
+@t1stprop2bdrm7months = 0,
+@t1stprop2bdrm8months = 0,   #7 months
+@t1stprop2bdrm9months = 0,
+@t1stprop1bdrm10months = 0,
+@t1stprop1bdrm11months = 0,
+@t1stprop1bdrm12months = 0,
+@t1stprop1bdrm13months = 0,
+@t1stprop1bdrm14months = 0,
+@t1stprop1bdrm15months = 0,
+@t1stprop1bdrm16months = 0,
+@t1stprop1bdrm17months = 0,
+@t1stprop1bdrm18months = 0,
+@t1stprop1bdrm19months = 0,
+@t1stprop1bdrm20months = 0,
+@t1stprop2bdrm21months = 0,
+@t1stprop2bdrm22months = 0,
+@t1stprop2bdrm23months = 0,
+@t1stprop2bdrm24months = 0]]
+
+@offerings = ["seven", "eight", "nine", "ten",
+   "elevel", "twelve", "thirteen", "fourteen",
+    "fifteen", "sixteen", "seventeen", "eighteen",
+     "nineteen", "twenty", "twenty-one","twenty-two",
+      "twenty-three", "twenty-four"]
+@zip = []
+@try.each do |z|
+  @zip << z.zip(@offerings)
+end
+
+print @zip

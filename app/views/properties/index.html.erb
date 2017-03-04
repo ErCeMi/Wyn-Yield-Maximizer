@@ -6,56 +6,51 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Rent</th>
       <th>Unit</th>
       <th>Unit type</th>
       <th>Bedroom</th>
       <th>Group</th>
-      <th>Tenantid</th>
-      <th>Resident name</th>
-      <th>Resident rent</th>
-      <th>Status</th>
-      <th>Days Vacant</th>
-      <th>Move in</th>
-      <th>Move out</th>
-      <th>Lease from</th>
-      <th>Lease to</th>
       <th>Amenities</th>
-      <th>Company</th>
+      <th>days_vacant</th>
+      <th>7 mo.</th>
+      <th>8 mo.</th>
+      <th>9 mo.</th>
+      <th>10 mo.</th>
+      <th>11 mo.</th>
+      <th>12 mo.</th>
+      <th>13 mo.</th>
+      <th>14 mo.</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
+    <!-- :name,:unit,:group, :bedroom, :unit_rent] -->
 
-    <% @properties.each do |property| %>
+    <% @reportAvailable.each do |property| %>
       <tr>
-        <td><%= property.name %></td>
-        <td><%= property.unit %></td>
-        <td><%= property.unit_type %></td>
-        <td><%= property.bedroom %></td>
-        <td><%= property.group %></td>
-        <td><%= property.tenantid %></td>
-        <td><%= property.resident_name %></td>
-        <td><%= property.resident_rent %></td>
-        <td><%= property.status %></td>
-        <td><%= property.days_vacant %></td>
-        <td><%= property.move_in %></td>
-        <td><%= property.move_out %></td>
-        <td><%= property.lease_from %></td>
-        <td><%= property.lease_to %></td>
-        <td><%= property.amenities %></td>
-        <td><%= property.company %></td>
-        <td>
-        <li><%= link_to 'Report', [:report, property] %></li>
-        <td>
-        <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= property["name"] %></td>
+        <td><%= property["unit_rent"] %></td>
+        <td><%= property["unit"] %></td>
+        <td><%= property["unit_type"] %></td>
+        <td><%= property["bedroom"] %></td>
+        <td><%= property["group"] %></td>
+        <td><%= property["amenities"] %></td>
+        <td><%= property["days_vacant"] %></td>
+        <td><%= (property["seven"]) %></td>
+        <td><%= (property["eight"]  ) %></td>
+        <td><%= (property["nine"] ) %></td>
+        <td><%= (property["ten"]  ) %></td>
+        <td><%= (property["eleven"]  ) %></td> <!-- add 5 days -->
+        <td><%= (property["twelve"]  ) %></td>
+        <td><%= (property["thirteen"]  ) %></td>
+        <td><%= (property["fourteen"] ) %></td>
+
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Property', new_property_path %>
