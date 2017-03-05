@@ -135,21 +135,13 @@ class PropertiesController < ApplicationController
     end
   end
 
-
-
-
-
-
-
-  # GET /properties/1
-  # GET /properties/1.json
   def show
   end
 
   def report
 
 
-    file = Tempfile.new('test')
+       file = Tempfile.new('test')
     doc_text = Report.text(@property)
     Prawn::Document.generate(file) do
       text doc_text
