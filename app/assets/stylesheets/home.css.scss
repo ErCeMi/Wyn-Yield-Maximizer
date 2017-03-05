@@ -1,0 +1,18 @@
+.parallax-container {
+  h2{
+    display: inline-block;
+    padding: 150px 100px;
+    margin: auto;
+    color: white
+  }
+}
+.transparency {
+  height: 100%;
+  width: 100%;
+   background-color: rgba(0, 0, 0, 0.14)
+}
+.parallax{
+  img {
+    z-index: -1;
+  }
+}
