@@ -13,15 +13,81 @@
       <th>Group</th>
       <th>Amenities</th>
       <th>days_vacant</th>
-      <th>7 mo.</th>
-      <th>8 mo.</th>
-      <th>9 mo.</th>
-      <th>10 mo.</th>
-      <th>11 mo.</th>
-      <th>12 mo.</th>
-      <th>13 mo.</th>
-      <th>14 mo.</th>
-      <th colspan="3"></th>
+      <% if @array_of_lease_terms_to_display.include? 7 %>
+        <th>7 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 8 %>
+        <th>8 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 9 %>
+        <th>9 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 10 %>
+        <th>10 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 11 %>
+        <th>11 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 12 %>
+        <th>12 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 13 %>
+        <th>13 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 14 %>
+        <th>14 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 15 %>
+        <th>15 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 16 %>
+        <th>16 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 17 %>
+        <th>17 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 18 %>
+        <th>18 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 19 %>
+        <th>19 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 20 %>
+        <th>20 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 21 %>
+        <th>21 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 22 %>
+        <th>22 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 23 %>
+        <th>23 mo.</th>
+      <%else%>
+      <%end%>
+      <% if @array_of_lease_terms_to_display.include? 24 %>
+        <th>24 mo.</th>
+      <%else%>
+      <%end%>
+
+
+      <!-- <th> colspan="3"></th> -->
     </tr>
   </thead>
 
@@ -38,14 +104,97 @@
         <td><%= property["group"] %></td>
         <td><%= property["amenities"] %></td>
         <td><%= property["days_vacant"] %></td>
-        <td><%= (property["seven"]) %></td>
+        <% if @array_of_lease_terms_to_display.include? 7 %>
+          <th><%= (property["seven"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 8 %>
+          <th><%= (property["eight"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 9 %>
+          <th><%= (property["nine"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 10 %>
+          <th><%= (property["ten"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 11 %>
+          <th><%= (property["eleven"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 12 %>
+          <th><%= (property["twelve"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 13 %>
+          <th><%= (property["thirteen"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 14 %>
+          <th><%= (property["fourteen"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 15 %>
+          <th><%= (property["fifteen"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 16 %>
+          <th><%= (property["sixteen"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 17 %>
+          <th><%= (property["seventeen"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 18 %>
+          <th><%= (property["eighteen",]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 19 %>
+          <th><%= (property["nineteen"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 20 %>
+          <th><%= (property["twenty"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 21 %>
+          <th><%= (property["twenty-one"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 22 %>
+          <th><%= (property["twenty-two"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 23 %>
+          <th><%= (property["twenty-three"]) %></th>
+        <%else%>
+        <%end%>
+        <% if @array_of_lease_terms_to_display.include? 24 %>
+          <th><%= (property["twenty-four"]) %></th>
+        <%else%>
+        <%end%>
+
+        <!-- <td><%= (property["seven"]) %></td>
         <td><%= (property["eight"]  ) %></td>
         <td><%= (property["nine"] ) %></td>
         <td><%= (property["ten"]  ) %></td>
-        <td><%= (property["eleven"]  ) %></td> <!-- add 5 days -->
+        <td><%= (property["eleven"]  ) %></td>
         <td><%= (property["twelve"]  ) %></td>
         <td><%= (property["thirteen"]  ) %></td>
         <td><%= (property["fourteen"] ) %></td>
+        <td><%= (property["fifteen"] ) %></td>
+        <td><%= (property["sixteen"] ) %></td>
+        <td><%= (property["seventeen"] ) %></td>
+        <td><%= (property["eighteen"] ) %></td>
+        <td><%= (property["nineteen"] ) %></td>
+        <td><%= (property["twenty"] ) %></td>
+        <td><%= (property["twenty-one"] ) %></td>
+        <td><%= (property["twenty-two"] ) %></td>
+        <td><%= (property["twenty-three"] ) %></td>
+        <td><%= (property["twenty-four"] ) %></td> -->
 
 
       </tr>
