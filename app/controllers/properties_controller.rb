@@ -81,6 +81,8 @@ class PropertiesController < ApplicationController
    end
 
 
+
+
       @test.each do |i|
         z = i.sort.uniq
         i.map! do |b|
