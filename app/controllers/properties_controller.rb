@@ -64,17 +64,32 @@ class PropertiesController < ApplicationController
       @all_units_for_ranking[z].each {|b| b["lease_to"] != nil ? (@months_array.each { |c| b["lease_to"].strftime("%m/%Y").to_s == c.to_s ?  (@array_of_rankings_per_bedroom_per_prop[z].map! {|x| x == @array_of_rankings_per_bedroom_per_prop[z][@months_array.index(c)] ? (@array_of_rankings_per_bedroom_per_prop[z][@months_array.index(c)] += 1) : x } ) : (@garbage += 1)  }): (@garbage += 1) }
     end
 
-
+    @array_of_lease_terms_at_indeces = [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
     @array_of_lease_terms_to_display = [8,10,14,17,18,24]
+    @array_of_indeces_for_ranking = []
+    @array_of_lease_terms_to_display.each do |r|
+        @array_of_indeces_for_ranking << @array_of_lease_terms_at_indeces.index(r)
+     end
 
-    @array_of_rankings_per_bedroom_per_prop.each do |i|
-      z = i.sort.uniq
-      i.map! do |b|
-        (z.index(b) + 1)
+
+
+     @test = []
+     @array_of_rankings_per_bedroom_per_prop.each do |z|
+       @array_of_indeces_for_ranking.each do |a|
+         @test << [z[a]]
+     end
+   end
+
+
+      @test.each do |i|
+        z = i.sort.uniq
+        i.map! do |b|
+          (z.index(b) + 1)
+        end
       end
-    end
 
-    @number_of_leaseterms_offered = 6
+
+    @number_of_leaseterms_offered = @array_of_lease_terms_to_display.length
 
     # makes values equal to spread
     @array_of_rankings_per_bedroom_per_prop.each do |i|
@@ -120,21 +135,13 @@ class PropertiesController < ApplicationController
     end
   end
 
-
-
-
-
-
-
-  # GET /properties/1
-  # GET /properties/1.json
   def show
   end
 
   def report
 
 
-    file = Tempfile.new('test')
+       file = Tempfile.new('test')
     doc_text = Report.text(@property)
     Prawn::Document.generate(file) do
       text doc_text
