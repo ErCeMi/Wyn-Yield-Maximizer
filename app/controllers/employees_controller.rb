@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
-  # before_filter :authorize  
+  # before_filter :authorize
 
   # GET /employees
   # GET /employees.json
@@ -29,9 +29,11 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
+        session[:user_id] = @employee.id
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: @employee }
       else
+        redirect_to '/signup'
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
@@ -70,6 +72,6 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:name, :email, :password_digest, :admin, :company_id)
+      params.require(:employee).permit(:name, :email, :password, :password_confirmation, :admin, :company_id)
     end
 end

@@ -29,8 +29,16 @@
     <a href="home.html" class="brand-logo">Wyn Yield Maximizer</a>
     </div>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/login">Admin Login</a></li>
-      <li><a href="/">User Login</a></li>
+
+
+      <% if current_user %>
+        Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+      <% else %>
+
+        <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+        <li><%= link_to "Sign up",  new_employee_path %></li>
+      <% end %>
+
       <li><a href="about.html">About Us</a></li>
       <li><a href="blog.html">Blog</a></li>
     </ul>
