@@ -12,11 +12,14 @@ class PropertiesController < ApplicationController
     # property belongs_to building
     @buildings = Property.building_names
 
+
     @bed_premiums_per_building = {}
+
     @buildings.each do |building_name|
-      @bed_premiums_per_building[building_name] = Property::PerBedPremium.new(building_name, @lease_terms)
+      @bed_premiums_per_building[building_name] = Property::PerBedPremium.new(building_name, @lease_terms )
     end
   end
+
 
   def show
   end

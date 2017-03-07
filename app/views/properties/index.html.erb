@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <table>
@@ -9,6 +10,7 @@
       <th>Unit type</th>
       <th>Bedroom</th>
       <th>Group</th>
+      <th>Available<th>
       <th>Amenities</th>
       <th>days_vacant</th>
       <% @lease_terms.each do |month| %>
@@ -26,6 +28,13 @@
         <td><%= property.unit_type %></td>
         <td><%= property.bedroom %></td>
         <td><%= property.group %></td>
+        <% if property.move_out == nil %>
+          <td>Missing</td>
+        <% elsif property.move_out <= DateTime.now %>
+          <td>available</td>
+        <% else %>
+          <td><%= property.move_out.next_day(5) %></td>
+        <% end %>
         <td><%= property.amenities %></td>
         <td><%= property.days_vacant %></td>
         <% @lease_terms.each do |month| %>

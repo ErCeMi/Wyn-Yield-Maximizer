@@ -46,6 +46,36 @@ class Property < ApplicationRecord
       three_br = num_expirations_by_month lease_terms, building_name, 3
       three_br_ranks = PerBedPremium.calculate_ranks three_br
       @three_br_premiums = calculate_premiums lease_terms, three_br_ranks
+
+    end
+    # number of units expiring at various lease lengths
+    def num_expirations_by_month(lease_lengths, building_name, num_bedrooms)
+      current_date = DateTime.now.next_month(8)
+      lease_lengths.map { |month|
+        month_range = (current_date + month.months)
+        Property.where(name: building_name, bedroom: num_bedrooms,
+          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
+          ).count
+      }
+    end
+    # reverse (golf) rank an array of scores
+    def self.calculate_ranks brs_expiring_per_month
+      sorted_brs = brs_expiring_per_month.sort.uniq
+      brs_expiring_per_month.map do |br|
+        (sorted_brs.index(br) + 1)
+      end
+    end
+
+
+    # calculate prorated premiums based on reverse ranks
+    PREMIUM = 75
+    def calculate_premiums lease_terms, brs_ranks
+      num_lease_terms = lease_terms.size.to_f
+      coeffs = {}
+      brs_ranks.each_with_index do |rank, idx|
+        coeffs[lease_terms[idx]] = ((rank - 1) / (num_lease_terms - 1) * PREMIUM).ceil
+      end
+      coeffs
     end
 
     def premiums_per_bedroom bedroom_count
@@ -60,36 +90,6 @@ class Property < ApplicationRecord
         # default value to something weird so it's easy to see
         Hash.new(Float::INFINITY)
       end
-    end
-
-    # number of units expiring at various lease lengths
-    def num_expirations_by_month(lease_lengths, building_name, num_bedrooms)
-      current_date = DateTime.now
-      lease_lengths.map { |month|
-        month_range = (current_date + month.months)
-        Property.where(name: building_name, bedroom: num_bedrooms,
-          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
-          ).count
-      }
-    end
-
-    # reverse (golf) rank an array of scores
-    def self.calculate_ranks brs_expiring_per_month
-      sorted_brs = brs_expiring_per_month.sort.uniq
-      brs_expiring_per_month.map do |br|
-        (sorted_brs.index(br) + 1)
-      end
-    end
-
-    # calculate prorated premiums based on reverse ranks
-    PREMIUM = 50
-    def calculate_premiums lease_terms, brs_ranks
-      num_lease_terms = lease_terms.size.to_f
-      coeffs = {}
-      brs_ranks.each_with_index do |rank, idx|
-        coeffs[lease_terms[idx]] = ((rank - 1) / (num_lease_terms - 1) * 50).ceil
-      end
-      coeffs
     end
 
     def calculate_rent(unit_rent, bedroom_count, lease_end_month)
