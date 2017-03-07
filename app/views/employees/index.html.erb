@@ -2,12 +2,12 @@
 
 <h1>Employees</h1>
 
-<table>
+<table class="centered highlight responsive-table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Password digest</th>
+
       <th>Admin</th>
       <th>Company</th>
       <th colspan="3"></th>
@@ -19,9 +19,9 @@
       <tr>
         <td><%= employee.name %></td>
         <td><%= employee.email %></td>
-        <td><%= employee.password_digest %></td>
+
         <td><%= employee.admin %></td>
-        <td><%= employee.company %></td>
+        <td><%= employee.company.name %></td>
         <td><%= link_to 'Show', employee %></td>
         <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
         <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>

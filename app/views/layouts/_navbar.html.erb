@@ -23,14 +23,20 @@
   </div>
   </nav> -->
 
-  <nav>
-
+<nav>
+  <div class="nav-wrapper brown lighten-2">
+    <div class="container">
+      <%= link_to 'Yield Maximizer', root_path, class: "brand-logo" %>
+    </div>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
     <a href="home.html" class="brand-logo">Wyn Yield Maximizer</a>
       <% if current_user %>
-        <%= link_to "Logout", '/logout' %>
+        <li>Signed in as <%= current_user.name %></li>
+        <li><%= link_to "Logout", '/logout' %></li>
       <% else %>
-        <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-        <%= link_to "Sign up",  new_employee_path %>
+        <li><%= link_to 'Login', '/login' %></li>
+        <li><%= link_to "Sign up",  new_employee_path %></li>
       <% end %>
-
+      </ul>
+    </div>
 </nav>

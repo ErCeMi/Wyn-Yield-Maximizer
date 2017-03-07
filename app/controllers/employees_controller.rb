@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
-  # before_filter :authorize
+  before_filter :authorize
+  before_filter :is_admin?, except: [:new]
 
   # GET /employees
   # GET /employees.json
@@ -33,7 +34,7 @@ class EmployeesController < ApplicationController
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: @employee }
       else
-        redirect_to '/signup'
+        #
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
