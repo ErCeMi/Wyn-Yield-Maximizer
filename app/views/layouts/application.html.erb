@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://use.fontawesome.com/506162c66a.js"></script>
     <!-- MATERIALIZE -->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
@@ -12,14 +13,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <!--Let browser know website is optimized for mobile-->
      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+      <style>
+        nav ul li a{
+          color: black;
+        }
+        #brand {
+          color: black;
+        }
+      </style>
   </head>
 
   <body>
 
   <!-- NAVBAR BEGIN -->
   <div class="navbar-fixed">
-    <nav class="nav-extended brown lighten-2">
+    <nav class="nav-extended white lighten-2">
       <div class="nav-wrapper">
         <%= render "layouts/navbar" %>
       </div>

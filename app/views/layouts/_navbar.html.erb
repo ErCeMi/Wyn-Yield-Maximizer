@@ -24,9 +24,9 @@
   </nav> -->
 
   <nav>
-  <div class="nav-wrapper brown lighten-2">
+  <div class="nav-wrapper white lighten-2">
     <div class="container">
-    <%= link_to 'Yield Maximizer', root_path, class: "brand-logo" %>
+    <%= link_to 'Yield Maximizer', root_path, class: "brand-logo" ,id: "brand" %>
     </div>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
@@ -36,7 +36,7 @@
         <li><%= link_to "Logout", '/logout' %></li>
       <% else %>
 
-        <li><%= link_to 'Login', '/login' %></li> 
+        <li><%= link_to 'Login', '/login' %></li>
         <li><%= link_to "Sign up",  new_employee_path %></li>
       <% end %>
 

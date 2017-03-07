@@ -21,5 +21,5 @@ $( document ).on('turbolinks:load', function() {
   console.log("It works on each visit!")
   $(".button-collapse").sideNav();
   $('select').material_select();
-    
+
 })
