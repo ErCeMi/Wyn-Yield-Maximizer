@@ -22,4 +22,20 @@ $( document ).on('turbolinks:load', function() {
   $(".button-collapse").sideNav();
   $('select').material_select();
 
+
+  $('.fa-spinner').hover(function() {
+    $(this).addClass('fa-spin');
+}, function() {
+    $(this).removeClass('fa-spin');
+});
+
 })
+
+// function scrollAndToggle(elem) {
+//   var position = $(elem).attr("href");
+//   console.log(position);
+//   $('html,body').animate({
+//                scrollTop: $(position).offset().top - 150
+//            }, "1000", "swing");
+//   menuAction();
+// }
