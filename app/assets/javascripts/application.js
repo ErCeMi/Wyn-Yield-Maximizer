@@ -27,8 +27,6 @@ $( document ).on('turbolinks:load', function() {
 
 
 
-
-
 // function scrollAndToggle(elem) {
 //   var position = $(elem).attr("href");
 //   console.log(position);
