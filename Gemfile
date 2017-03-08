@@ -4,8 +4,11 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-gem 'sass-rails', '~>5.0'
-gem 'foundation-rails'
+
+gem "font-awesome-rails"
+
+gem 'materialize-sass'
+
 gem 'prawn'
 gem 'hirb'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -12,16 +12,29 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
 //= require turbolinks
 //= require_tree .
 
-// $( document ).on('turbolinks:load', function() {
-//   $('.parallax').parallax();
-//   console.log("It works on each visit!")
-//   $(".button-collapse").sideNav();
-//   $('select').material_select();
-//
-// })
+$( document ).on('turbolinks:load', function() {
+  $('.parallax').parallax();
+  console.log("It works on each visit!")
+  $(".button-collapse").sideNav();
+  $('select').material_select();
 
-$(function(){ $(document).foundation(); });
+
+  $('.fa-spinner').hover(function() {
+    $(this).addClass('fa-spin');
+}, function() {
+    $(this).removeClass('fa-spin');
+});
+
+})
+
+// function scrollAndToggle(elem) {
+//   var position = $(elem).attr("href");
+//   console.log(position);
+//   $('html,body').animate({
+//                scrollTop: $(position).offset().top - 150
+//            }, "1000", "swing");
+//   menuAction();
+// }
