@@ -11,11 +11,11 @@ Rails.application.routes.draw do
    get '/logout' => 'sessions#destroy'
 
 
-  resources :properties do
-    member do
-      get 'report'
-    end
-  end
+  resources :properties 
+  #   member do
+  #     get 'report'
+  #   end
+  # end
 
   resources :employees
   resources :companies
