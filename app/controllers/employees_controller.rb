@@ -26,18 +26,22 @@ class EmployeesController < ApplicationController
   # POST /employees
   # POST /employees.json
   def create
-    @employee = Employee.new(employee_params)
+    if current_user.is_admin?
 
-    respond_to do |format|
-      if @employee.save
-        session[:user_id] = @employee.id
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
-        format.json { render :show, status: :created, location: @employee }
+        @employee = Employee.new(employee_params)
+
+        respond_to do |format|
+          if @employee.save
+            session[:user_id] = @employee.id
+            format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
+            format.json { render :show, status: :created, location: @employee }
+          else
+            format.html { render :new }
+            format.json { render json: @employee.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        #
-        format.html { render :new }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
-      end
+        redirect_to root_path, 'Only admins can create users.'
     end
   end
 
