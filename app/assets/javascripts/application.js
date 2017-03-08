@@ -12,14 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require materialize-sprockets
+//= require foundation
 //= require turbolinks
 //= require_tree .
 
-$( document ).on('turbolinks:load', function() {
-  $('.parallax').parallax();
-  console.log("It works on each visit!")
-  $(".button-collapse").sideNav();
-  $('select').material_select();
-    
-})
+// $( document ).on('turbolinks:load', function() {
+//   $('.parallax').parallax();
+//   console.log("It works on each visit!")
+//   $(".button-collapse").sideNav();
+//   $('select').material_select();
+//
+// })
+
+$(function(){ $(document).foundation(); });

@@ -6,10 +6,9 @@ Rails.application.routes.draw do
    get "blog", to: "pages#blog"
    get "about", to: "pages#about"
 
-
-
-
-
+   get '/login' => 'sessions#new'
+   post '/login' => 'sessions#create'
+   get '/logout' => 'sessions#destroy'
 
 
   resources :properties do
