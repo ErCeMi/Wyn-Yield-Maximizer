@@ -26,7 +26,7 @@ class EmployeesController < ApplicationController
   # POST /employees
   # POST /employees.json
   def create
-    if current_user.is_admin?
+    if current_user.admin == true
 
         @employee = Employee.new(employee_params)
 
@@ -41,7 +41,7 @@ class EmployeesController < ApplicationController
           end
         end
       else
-        redirect_to root_path, 'Only admins can create users.'
+        redirect_to root_path, notice:'Only admins can create users.'
     end
   end
 
