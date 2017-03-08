@@ -12,11 +12,11 @@ Rails.application.routes.draw do
 
 
 
-  resources :properties do
-    member do
-      get 'report'
-    end
-  end
+  resources :properties 
+  #   member do
+  #     get 'report'
+  #   end
+  # end
 
   resources :employees
   resources :companies

@@ -30,27 +30,107 @@ class Property < ApplicationRecord
     self.vacant.or(self.notice)
   end
   ##
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |a|
+        csv << a.attributes.values_at(*column_names)
+      end
+    end
+  end
 
   # MONTH_RANGE = (7..24)
 
   class PerBedPremium
     def initialize building_name, lease_terms
-      one_br = num_expirations_by_month lease_terms, building_name, 1
-      one_br_ranks = PerBedPremium.calculate_ranks one_br
-      @one_br_premiums = calculate_premiums lease_terms, one_br_ranks
+      one_br0 = num_expirations_by_month_0 lease_terms, building_name, 1
+      one_br_ranks0 = PerBedPremium.calculate_ranks one_br0
+      @one_br_premiums0 = calculate_premiums lease_terms, one_br_ranks0
 
-      two_br = num_expirations_by_month lease_terms, building_name, 2
-      two_br_ranks = PerBedPremium.calculate_ranks two_br
-      @two_br_premiums = calculate_premiums lease_terms, two_br_ranks
+      two_br0 = num_expirations_by_month_0 lease_terms, building_name, 2
+      two_br_ranks0 = PerBedPremium.calculate_ranks two_br0
+      @two_br_premiums0 = calculate_premiums lease_terms, two_br_ranks0
 
-      three_br = num_expirations_by_month lease_terms, building_name, 3
-      three_br_ranks = PerBedPremium.calculate_ranks three_br
-      @three_br_premiums = calculate_premiums lease_terms, three_br_ranks
+      three_br0 = num_expirations_by_month_0 lease_terms, building_name, 3
+      three_br_ranks0 = PerBedPremium.calculate_ranks three_br0
+      @three_br_premiums0 = calculate_premiums lease_terms, three_br_ranks0
+
+
+
+      one_br1 = num_expirations_by_month_1 lease_terms, building_name, 1
+      one_br_ranks1 = PerBedPremium.calculate_ranks one_br1
+      @one_br_premiums1 = calculate_premiums lease_terms, one_br_ranks1
+
+      two_br1 = num_expirations_by_month_1 lease_terms, building_name, 2
+      two_br_ranks1 = PerBedPremium.calculate_ranks two_br1
+      @two_br_premiums1 = calculate_premiums lease_terms, two_br_ranks1
+
+      three_br1 = num_expirations_by_month_1 lease_terms, building_name, 3
+      three_br_ranks1 = PerBedPremium.calculate_ranks three_br1
+      @three_br_premiums1 = calculate_premiums lease_terms, three_br_ranks1
+
+
+
+      one_br2 = num_expirations_by_month_2 lease_terms, building_name, 1
+      one_br_ranks2 = PerBedPremium.calculate_ranks one_br2
+      @one_br_premiums2 = calculate_premiums lease_terms, one_br_ranks2
+
+      two_br2 = num_expirations_by_month_2 lease_terms, building_name, 2
+      two_br_ranks2 = PerBedPremium.calculate_ranks two_br2
+      @two_br_premiums2 = calculate_premiums lease_terms, two_br_ranks2
+
+      three_br2 = num_expirations_by_month_2 lease_terms, building_name, 3
+      three_br_ranks2 = PerBedPremium.calculate_ranks three_br2
+      @three_br_premiums2 = calculate_premiums lease_terms, three_br_ranks2
+
+
+
+      one_br3 = num_expirations_by_month_3 lease_terms, building_name, 1
+      one_br_ranks3 = PerBedPremium.calculate_ranks one_br3
+      @one_br_premiums3 = calculate_premiums lease_terms, one_br_ranks3
+
+      two_br3 = num_expirations_by_month_3 lease_terms, building_name, 2
+      two_br_ranks3 = PerBedPremium.calculate_ranks two_br3
+      @two_br_premiums3 = calculate_premiums lease_terms, two_br_ranks3
+
+      three_br3 = num_expirations_by_month_3 lease_terms, building_name, 3
+      three_br_ranks3 = PerBedPremium.calculate_ranks three_br3
+      @three_br_premiums3 = calculate_premiums lease_terms, three_br_ranks3
+
+
+
+      one_br4 = num_expirations_by_month_4 lease_terms, building_name, 1
+      one_br_ranks4 = PerBedPremium.calculate_ranks one_br4
+      @one_br_premiums4 = calculate_premiums lease_terms, one_br_ranks4
+
+      two_br4 = num_expirations_by_month_4 lease_terms, building_name, 2
+      two_br_ranks4 = PerBedPremium.calculate_ranks two_br4
+      @two_br_premiums4 = calculate_premiums lease_terms, two_br_ranks4
+
+      three_br4 = num_expirations_by_month_4 lease_terms, building_name, 3
+      three_br_ranks4 = PerBedPremium.calculate_ranks three_br4
+      @three_br_premiums4 = calculate_premiums lease_terms, three_br_ranks4
+
+
+
+      one_br5 = num_expirations_by_month_5 lease_terms, building_name, 1
+      one_br_ranks5 = PerBedPremium.calculate_ranks one_br5
+      @one_br_premiums5 = calculate_premiums lease_terms, one_br_ranks5
+
+      two_br5 = num_expirations_by_month_5 lease_terms, building_name, 2
+      two_br_ranks5= PerBedPremium.calculate_ranks two_br5
+      @two_br_premiums5 = calculate_premiums lease_terms, two_br_ranks5
+
+      three_br5 = num_expirations_by_month_5 lease_terms, building_name, 3
+      three_br_ranks5 = PerBedPremium.calculate_ranks three_br5
+      @three_br_premiums5 = calculate_premiums lease_terms, three_br_ranks5
+
+
 
     end
     # number of units expiring at various lease lengths
-    def num_expirations_by_month(lease_lengths, building_name, num_bedrooms)
-      current_date = DateTime.now.next_month(8)
+    def num_expirations_by_month_0(lease_lengths, building_name, num_bedrooms)
+      current_date = DateTime.now
       lease_lengths.map { |month|
         month_range = (current_date + month.months)
         Property.where(name: building_name, bedroom: num_bedrooms,
@@ -58,6 +138,58 @@ class Property < ApplicationRecord
           ).count
       }
     end
+
+    def num_expirations_by_month_1(lease_lengths, building_name, num_bedrooms)
+      current_date = DateTime.now.next_month(1)
+      lease_lengths.map { |month|
+        month_range = (current_date + month.months)
+        Property.where(name: building_name, bedroom: num_bedrooms,
+          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
+          ).count
+      }
+    end
+
+    def num_expirations_by_month_2(lease_lengths, building_name, num_bedrooms)
+      current_date = DateTime.now.next_month(2)
+      lease_lengths.map { |month|
+        month_range = (current_date + month.months)
+        Property.where(name: building_name, bedroom: num_bedrooms,
+          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
+          ).count
+      }
+    end
+
+    def num_expirations_by_month_3(lease_lengths, building_name, num_bedrooms)
+      current_date = DateTime.now.next_month(3)
+      lease_lengths.map { |month|
+        month_range = (current_date + month.months)
+        Property.where(name: building_name, bedroom: num_bedrooms,
+          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
+          ).count
+      }
+    end
+
+    def num_expirations_by_month_4(lease_lengths, building_name, num_bedrooms)
+      current_date = DateTime.now.next_month(4)
+      lease_lengths.map { |month|
+        month_range = (current_date + month.months)
+        Property.where(name: building_name, bedroom: num_bedrooms,
+          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
+          ).count
+      }
+    end
+
+    def num_expirations_by_month_5(lease_lengths, building_name, num_bedrooms)
+      current_date = DateTime.now.next_month(5)
+      lease_lengths.map { |month|
+        month_range = (current_date + month.months)
+        Property.where(name: building_name, bedroom: num_bedrooms,
+          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
+          ).count
+      }
+    end
+
+
     # reverse (golf) rank an array of scores
     def self.calculate_ranks brs_expiring_per_month
       sorted_brs = brs_expiring_per_month.sort.uniq
@@ -78,22 +210,111 @@ class Property < ApplicationRecord
       coeffs
     end
 
-    def premiums_per_bedroom bedroom_count
+    def premiums_per_bedroom0 bedroom_count
       case bedroom_count
       when 1
-        @one_br_premiums
+        @one_br_premiums0
       when 2
-        @two_br_premiums
+        @two_br_premiums0
       when 3
-        @three_br_premiums
+        @three_br_premiums0
       else
         # default value to something weird so it's easy to see
         Hash.new(Float::INFINITY)
       end
     end
 
-    def calculate_rent(unit_rent, bedroom_count, lease_end_month)
-      unit_rent + premiums_per_bedroom(bedroom_count)[lease_end_month]
+    def premiums_per_bedroom1 bedroom_count
+      case bedroom_count
+      when 1
+        @one_br_premiums1
+      when 2
+        @two_br_premiums1
+      when 3
+        @three_br_premiums1
+      else
+        # default value to something weird so it's easy to see
+        Hash.new(Float::INFINITY)
+      end
     end
+
+    def premiums_per_bedroom2 bedroom_count
+      case bedroom_count
+      when 1
+        @one_br_premiums2
+      when 2
+        @two_br_premiums2
+      when 3
+        @three_br_premiums2
+      else
+        # default value to something weird so it's easy to see
+        Hash.new(Float::INFINITY)
+      end
+    end
+
+    def premiums_per_bedroom3 bedroom_count
+      case bedroom_count
+      when 1
+        @one_br_premiums3
+      when 2
+        @two_br_premiums3
+      when 3
+        @three_br_premiums3
+      else
+        # default value to something weird so it's easy to see
+        Hash.new(Float::INFINITY)
+      end
+    end
+
+
+    def premiums_per_bedroom4 bedroom_count
+      case bedroom_count
+      when 1
+        @one_br_premiums4
+      when 2
+        @two_br_premiums4
+      when 3
+        @three_br_premiums4
+      else
+        # default value to something weird so it's easy to see
+        Hash.new(Float::INFINITY)
+      end
+    end
+
+    def premiums_per_bedroom5 bedroom_count
+      case bedroom_count
+      when 1
+        @one_br_premiums5
+      when 2
+        @two_br_premiums5
+      when 3
+        @three_br_premiums5
+      else
+        # default value to something weird so it's easy to see
+        Hash.new(Float::INFINITY)
+      end
+    end
+
+    def calculate_rent0(unit_rent, bedroom_count, lease_end_month)
+      unit_rent + premiums_per_bedroom0(bedroom_count)[lease_end_month]
+    end
+    def calculate_rent1(unit_rent, bedroom_count, lease_end_month)
+      unit_rent + premiums_per_bedroom1(bedroom_count)[lease_end_month]
+    end
+    def calculate_rent2(unit_rent, bedroom_count, lease_end_month)
+      unit_rent + premiums_per_bedroom2(bedroom_count)[lease_end_month]
+    end
+    def calculate_rent3(unit_rent, bedroom_count, lease_end_month)
+      unit_rent + premiums_per_bedroom3(bedroom_count)[lease_end_month]
+    end
+    def calculate_rent4(unit_rent, bedroom_count, lease_end_month)
+      unit_rent + premiums_per_bedroom4(bedroom_count)[lease_end_month]
+    end
+    def calculate_rent5(unit_rent, bedroom_count, lease_end_month)
+      unit_rent + premiums_per_bedroom5(bedroom_count)[lease_end_month]
+    end
+
+
+
   end
 end

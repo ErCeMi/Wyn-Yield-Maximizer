@@ -1,17 +1,35 @@
 
 <p id="notice"><%= notice %></p>
 
-<table>
+<button id="databutton" >PDF</button>
+<div id="data">
+<table >
+  <colgroup>
+    <col width="10%">
+    <col width="10%">
+    <col width="5%">
+    <col width="10%">
+    <col width="5%">
+    <col width="10%">
+    <col width="10%">
+    <col width="20%">
+    <col width="5%">
+
+    <%(@lease_terms.length).times do %>
+      <col width="5%">
+    <%end%>
+
+  </colgroup>
   <thead>
     <tr>
       <th>Name</th>
       <th>Rent</th>
       <th>Unit</th>
-      <th>Unit type</th>
+      <th>Unit Type</th>
       <th>Bedroom</th>
-      <th>Group</th>
-      <th>Available<th>
-      <th>Amenities</th>
+      <th>Groupp</th>
+      <th>Avilable</th>
+      <th>Amen</th>
       <th>days_vacant</th>
       <% @lease_terms.each do |month| %>
         <th><%= month %> mo.</th>
@@ -37,13 +55,82 @@
         <% end %>
         <td><%= property.amenities %></td>
         <td><%= property.days_vacant %></td>
-        <% @lease_terms.each do |month| %>
-          <th><%= number_to_currency @bed_premiums_per_building[property.name].
-            calculate_rent(property.unit_rent, property.bedroom, month), precision: 0 %></th>
+        <% if property.group == "Vacant Unrented" %>
+          <% @lease_terms.each do |month| %>
+            <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent0(property.unit_rent, property.bedroom, month), precision: 0 %></th>
+          <% end %>
+        <% elsif property.group == "Notice Unrented" %>
+          <% if property.move_out.next_day(5).strftime("%Y%m") <= DateTime.now.strftime("%Y%m") %>
+            <% @lease_terms.each do |month| %>
+              <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent1(property.unit_rent, property.bedroom, month), precision: 0 %></th>
+              <% end %>
+          <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(1).strftime("%Y%m") %>
+            <% @lease_terms.each do |month| %>
+              <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent1(property.unit_rent, property.bedroom, month), precision: 0 %></th>
+              <% end %>
+          <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(2).strftime("%Y%m") %>
+            <% @lease_terms.each do |month| %>
+              <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent1(property.unit_rent, property.bedroom, month), precision: 0 %></th>
+              <% end %>
+          <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(3).strftime("%Y%m") %>
+            <% @lease_terms.each do |month| %>
+              <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent1(property.unit_rent, property.bedroom, month), precision: 0 %></th>
+              <% end %>
+          <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(4).strftime("%Y%m") %>
+            <% @lease_terms.each do |month| %>
+              <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent1(property.unit_rent, property.bedroom, month), precision: 0 %></th>
+              <% end %>
+          <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(5).strftime("%Y%m") %>
+            <% @lease_terms.each do |month| %>
+              <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent1(property.unit_rent, property.bedroom, month), precision: 0 %></th>
+              <% end %>
+              <%end %>
+
         <% end %>
+
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
-<br>
+function demoFromHTML() {
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    // source can be HTML-formatted string, or a reference
+    // to an actual DOM element from which the text will be scraped.
+    source = $('#customers')[0];
+
+    // we support special element handlers. Register them with jQuery-style
+    // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+    // There is no support for any other type of selectors
+    // (class, of compound) at this time.
+    specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector
+        '#bypassme': function (element, renderer) {
+            // true = "handled elsewhere, bypass text extraction"
+            return true
+        }
+    };
+    margins = {
+        top: 80,
+        bottom: 60,
+        left: 40,
+        width: 522
+    };
+    // all coords and widths are in jsPDF instance's declared units
+    // 'inches' in this case
+    pdf.fromHTML(
+    source, // HTML string or DOM elem ref.
+    margins.left, // x coord
+    margins.top, { // y coord
+        'width': margins.width, // max width of content on PDF
+        'elementHandlers': specialElementHandlers
+    },
+
+    function (dispose) {
+        // dispose: object with X, Y of the last line add to the PDF
+        //          this allow the insertion of new lines after html
+        pdf.save('Test.pdf');
+    }, margins);
+}
+</br>

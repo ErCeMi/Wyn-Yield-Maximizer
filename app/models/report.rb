@@ -5,7 +5,7 @@ class Report
 
 
   def self.text(property)
-     "#{@@count_array}"
+     "hi!"
   end
 
 end

@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
   # GET /properties
   # GET /properties.json
   def index
-    @lease_terms = [7,10,12,15,18] # probably current_user.lease_terms
+    @lease_terms = [7,8] # probably current_user.lease_terms
     @available = Property.available
 
     # need a building model
@@ -18,7 +18,48 @@ class PropertiesController < ApplicationController
     @buildings.each do |building_name|
       @bed_premiums_per_building[building_name] = Property::PerBedPremium.new(building_name, @lease_terms )
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { render text: Property.to_csv }
+    end
   end
+
+  # # inserted as an example of how to get an excel sheet
+  # # as binary data
+  # def get_exel_spread_sheet
+  #   require 'httparty'
+  #   columns = ['column1', 'column2', 'column3']
+  #   collection = [
+  #     {'column1' => 0, 'column2' => 1, 'column3' => 2},
+  #     {'column1' => 0, 'column2' => 1, 'column3' => 2},
+  #     {'column1' => 0, 'column2' => 1, 'column3' => 2},
+  #   ]
+  #   json_payload = {
+  #       data: collection,
+  #       headers: columns,
+  #   }.to_json
+  #   api_response = HTTParty.post("http://excel.zip.thruhere.net",
+  #     {
+  #       :body => {
+  #         data: json_payload,
+  #       }
+  #     }
+  #   )
+  #   # this write file to disk
+  #   # you will want to send the data as a response
+  #   begin
+  #     file = File.open("/tmp/sample.xls", "w")
+  #     file.write(api_response.body)
+  #   rescue IOError => e
+  #     #some error occur, dir not writable etc.
+  #     puts e
+  #   ensure
+  #     file.close unless file.nil?
+  #   end
+  # end
+
+
 
 
   def show
@@ -27,12 +68,6 @@ class PropertiesController < ApplicationController
   def report
 
 
-       file = Tempfile.new('test')
-    doc_text = Report.text(@property)
-    Prawn::Document.generate(file) do
-      text doc_text
-    end
-    send_file file, :type=>"application/pdf", :x_sendfile=>true
   end
 
   # GET /properties/new
@@ -87,7 +122,7 @@ class PropertiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_property
-      @property = Property.find(params[:id])
+      @property = Property.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
