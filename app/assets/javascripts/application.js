@@ -24,11 +24,6 @@ $( document ).on('turbolinks:load', function() {
 
 
 
-  $('.fa-spinner').hover(function() {
-    $(this).addClass('fa-spin');
-}, function() {
-    $(this).removeClass('fa-spin');
-
 
 
     $('#databutton').on('click', function() {
@@ -74,7 +69,7 @@ $( document ).on('turbolinks:load', function() {
 
 });
 
-})
+  })
 
 // function scrollAndToggle(elem) {
 //   var position = $(elem).attr("href");
