@@ -5,7 +5,13 @@
     </div>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <% if current_user %>
-        <li>Signed in as <%= current_user.name %></li>
+
+        <li style="color:grey"> Signed in as <%= current_user.name.capitalize %></li>
+        <% if current_user.admin == true %>
+        <li><%= link_to "Companies", '/companies' %></li>
+        <li><%= link_to "Employee", '/employees' %></li>
+        <% end %>
+        <li><%= link_to "Properties", '/properties' %></li>
         <li><%= link_to "Logout", '/logout' %></li>
       <% else %>
         <li><%= link_to 'Login', '/login' %></li>

@@ -2,13 +2,11 @@
 <p id="notice"><%= notice %></p>
 
 
-<div id="data">
-<!-- <table class="centered highlight responsive-table"> -->
-<table id="test">
 
 
+<table class="centered highlight responsive-table">
 
-  </colgroup>
+
 
   <thead>
     <tr>
@@ -71,14 +69,15 @@
               <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent1((property.unit_rent - property.discount), property.bedroom, month), precision: 0 %></th>
               <% end %>
               <%end %>
-
         <% end %>
-
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b528bb99e685be90fe2486d3ea4f9057bd5eb81c
 </br>
