@@ -1,0 +1,36 @@
+<div class="container">
+  <!-- PAGINATION -->
+  <%= will_paginate @employees %>
+
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+  <table class="centered highlight responsive-table">
+    <thead>
+      <tr>
+        <th><%= sort_link "name" %></th>
+        <th><%= sort_link "email" %></th>
+        <th><%= sort_link "admin" %></th>
+        <th><%= sort_link "company_id" %></th>
+        <th><%= sort_link "created_at", "Added On" %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.name %></td>
+          <td><%= employee.email %></td>
+          <td><%= employee.admin %></td>
+          <td><%= employee.company.name %></td>
+          <td><%= employee.created_at.strftime "%B %e, %Y" %></td>
+          <td><%= link_to 'Show', employee %></td>
+          <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+          <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<br>
+<!-- PAGINATION -->
+<%= will_paginate @employees %>
+</div>

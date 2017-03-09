@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem "font-awesome-rails"
-
+gem 'will_paginate', '~> 3.1.0'
 gem 'materialize-sass'
 
 gem 'prawn'

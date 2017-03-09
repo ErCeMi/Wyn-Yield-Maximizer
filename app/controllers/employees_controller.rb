@@ -1,12 +1,14 @@
 class EmployeesController < ApplicationController
+  include ApplicationHelper
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
   before_filter :authorize
   before_filter :is_admin?, except: [:new]
+  helper_method :sort_column, :sort_direction
 
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee.order("#{sort_column} #{sort_direction}").search(params[:search]).paginate(:per_page => 10, :page => params[:page])
   end
 
   # GET /employees/1
@@ -77,6 +79,18 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:name, :email, :password, :password_confirmation, :admin, :company_id)
+      params.require(:employee).permit(:name, :email, :password, :password_confirmation,:search, :admin, :company_id)
+    end
+
+    def sortable_columns
+      ["name", "email", "admin", "company"]
+    end
+
+    def sort_column
+      sortable_columns.include?(params[:column]) ? params[:column] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

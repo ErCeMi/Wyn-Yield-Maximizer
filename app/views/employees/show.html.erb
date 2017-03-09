@@ -10,10 +10,6 @@
   <%= @employee.email %>
 </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @employee.password_digest %>
-</p>
 
 <p>
   <strong>Admin:</strong>
@@ -22,7 +18,7 @@
 
 <p>
   <strong>Company:</strong>
-  <%= @employee.company %>
+  <%= @employee.company.name %>
 </p>
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
