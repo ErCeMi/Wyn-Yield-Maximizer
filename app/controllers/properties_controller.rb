@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
   # GET /properties
   # GET /properties.json
   def index
-    @lease_terms = [7,8] # probably current_user.lease_terms
+    @lease_terms = [7,10,11,12,13,14,15] # probably current_user.lease_terms
     @available = Property.available
 
     # need a building model
@@ -127,6 +127,6 @@ class PropertiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit(:name, :unit, :unit_type, :bedroom, :group, :tenantid, :resident_name, :resident_rent, :status, :days_vacant, :move_in, :move_out, :lease_from, :lease_to, :amenities, :company_id)
+      params.require(:property).permit(:lol,:name, :unit, :unit_type, :bedroom, :group, :tenantid, :resident_name, :resident_rent, :unit_rent, :discount, :status, :days_vacant, :move_in, :move_out, :lease_from, :lease_to, :amenities, :company_id)
     end
 end

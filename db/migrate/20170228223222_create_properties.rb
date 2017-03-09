@@ -11,6 +11,7 @@ class CreateProperties < ActiveRecord::Migration[5.0]
       t.string :resident_name
       t.integer :resident_rent
       t.integer :unit_rent
+      t.integer :discount
       t.string :status
       t.integer :days_vacant
       t.date :move_in

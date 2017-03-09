@@ -23,6 +23,7 @@ csv.each do |row|
   t.resident_name = row['resident_name']
   t.resident_rent = row['resident_rent']
   t.unit_rent = row['unit_rent']
+  t.discount = row['discount']
   t.status = row['status']
   t.days_vacant = row['days_vacant']
   t.move_in = row['move_in'] ? Date.strptime(row['move_in'], '%m/%d/%y') : nil

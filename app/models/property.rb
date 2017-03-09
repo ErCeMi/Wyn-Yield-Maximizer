@@ -200,7 +200,7 @@ class Property < ApplicationRecord
 
 
     # calculate prorated premiums based on reverse ranks
-    PREMIUM = 75
+    PREMIUM = 55
     def calculate_premiums lease_terms, brs_ranks
       num_lease_terms = lease_terms.size.to_f
       coeffs = {}

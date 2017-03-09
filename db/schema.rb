@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20170228223222) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.boolean  "admin"
+    t.boolean  "admin",           default: false
     t.integer  "company_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["company_id"], name: "index_employees_on_company_id", using: :btree
   end
 
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170228223222) do
     t.string   "resident_name"
     t.integer  "resident_rent"
     t.integer  "unit_rent"
+    t.integer  "discount"
     t.string   "status"
     t.integer  "days_vacant"
     t.date     "move_in"
