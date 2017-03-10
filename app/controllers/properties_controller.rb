@@ -23,6 +23,32 @@ class PropertiesController < ApplicationController
       format.html
       format.csv { render text: Property.to_csv }
     end
+
+    def renewal
+      @lease_terms = [7,10,11,12,13,14,15] # probably current_user.lease_terms
+      @available = Property.available
+      @renewing = Property.renewing
+      @premium = 1.015
+
+
+      # need a building model
+      # building has_many properties
+      # property belongs_to building
+      @buildings = Property.building_names
+
+
+      @bed_premiums_per_building = {}
+
+      @buildings.each do |building_name|
+        @bed_premiums_per_building[building_name] = Property::PerBedPremium.new(building_name, @lease_terms )
+      end
+
+      respond_to do |format|
+        format.html
+        format.csv { render text: Property.to_csv }
+      end
+    end
+
   end
 
   # # inserted as an example of how to get an excel sheet

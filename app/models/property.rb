@@ -29,6 +29,10 @@ class Property < ApplicationRecord
   def self.available
     self.vacant.or(self.notice)
   end
+
+  def self.renewing
+    self.where(lease_to: ((DateTime.now.beginning_of_month)..(DateTime.now.next_month(4).end_of_month)))
+  end
   ##
   def self.to_csv
     CSV.generate do |csv|
@@ -200,7 +204,7 @@ class Property < ApplicationRecord
 
 
     # calculate prorated premiums based on reverse ranks
-    PREMIUM = 55
+    PREMIUM = 45
     def calculate_premiums lease_terms, brs_ranks
       num_lease_terms = lease_terms.size.to_f
       coeffs = {}

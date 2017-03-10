@@ -9,9 +9,9 @@ Rails.application.routes.draw do
    get '/login' => 'sessions#new'
    post '/login' => 'sessions#create'
    get '/logout' => 'sessions#destroy'
+   get '/renewal' => 'properties#renewal'
 
-
-  resources :properties 
+  resources :properties
   #   member do
   #     get 'report'
   #   end
