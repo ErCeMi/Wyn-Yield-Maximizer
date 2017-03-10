@@ -5,7 +5,7 @@ class PropertiesController < ApplicationController
   # GET /properties.json
   def index
     @lease_terms = [7,10,11,12,13,14,15] # probably current_user.lease_terms
-    @available = Property.available
+    # @available = Property.available
 
     # need a building model
     # building has_many properties
@@ -18,6 +18,8 @@ class PropertiesController < ApplicationController
     @buildings.each do |building_name|
       @bed_premiums_per_building[building_name] = Property::PerBedPremium.new(building_name, @lease_terms )
     end
+
+
 
     respond_to do |format|
       format.html

@@ -33,6 +33,14 @@ class Property < ApplicationRecord
   def self.renewing
     self.where(lease_to: ((DateTime.now.beginning_of_month)..(DateTime.now.next_month(4).end_of_month)))
   end
+
+  def self.available_per_prop(prop_name)
+    self.available.where(name: prop_name)
+  end
+
+  def self.renewing_per_prop(prop_name)
+    self.renewing.where(name: prop_name)
+  end
   ##
   def self.to_csv
     CSV.generate do |csv|
