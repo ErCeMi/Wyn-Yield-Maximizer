@@ -23,6 +23,8 @@ $( document ).on('turbolinks:load', function() {
   $('select').material_select();
 
 
+  });
+
   $("#employees th a, #employees .pagination a").on("click", function() {
     $.getScript(this.href);
     return false;

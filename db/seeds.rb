@@ -8,6 +8,7 @@
 require 'csv'
 require 'open-uri'
 Company.create(name: "UPM")
+Company.create(name: "Rosenthal & Associates")
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'pmdata.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1') #skip_blanks: true)#.reject { |row| row.all?(&:nil?) }
 
