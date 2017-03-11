@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%(Property.building_names).each do |x| %>
+
   <table id=x class="centered highlight responsive-table">
 
 
@@ -21,6 +21,7 @@
     </thead>
 
     <tbody>
+      <%(Property.building_names).each do |x| %>
       <% Property.available_per_prop(x).each do |property| %>
         <tr>
           <td><%= property.name %></td>
@@ -69,8 +70,9 @@
           <% end %>
         </tr>
       <% end %>
+      <% end %>
     </tbody>
   </table>
-<% end %>
+
 
 </br>
