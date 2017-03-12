@@ -1,8 +1,56 @@
 <p id="notice"><%= notice %></p>
 
+<!-- Navbar goes here -->
+
+<!-- Page Layout here -->
+<!-- <ul id="slide-out" class="side-nav fixed">
+  <li><a href="#!">First Sidebar Link</a></li>
+  <li><a href="#!">Second Sidebar Link</a></li>
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+       -->
+<div class="row">
+  <div class="col s12 m4 l2"> <!-- Note that "m4 l3" was added -->
+    <div class="card">
+      <div class="card-image">
 
 
-<%(Property.building_names).each do |x| %>
+<div class="transparency"></div>
+        <%= image_tag("renewal.jpg", :alt => "home decor") %>
+
+        <span class="card-title">Renewal Properties</span>
+      </div>
+      <div class="card-content">
+
+      </div>
+      <div class="card-action">
+        <div class="conatiner">
+
+
+        <a href="#">
+          <%= @current_user.company.name %>
+          Portfolio
+        </a>
+        </div>
+      </div>
+    </div>
+    <div class="collection">
+      <a href="/update" class="collection-item"> Import CSV</a>
+      <a href="#!" class="collection-item"> Export CSV</a>
+      <a href="#!" class="collection-item">Print PDF</a>
+      <a href="#!" class="collection-item"> Settings</a>
+    </div>
+  </div>
+
+  <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+    <!-- Teal page content
+
+          This content will be:
+      9-columns-wide on large screens,
+      8-columns-wide on medium screens,
+      12-columns-wide on small screens  -->
+
+
   <table id=x class="centered highlight responsive-table">
 
 
@@ -25,6 +73,7 @@
     </thead>
 
     <tbody>
+      <%(Property.building_names).each do |x| %>
       <% Property.renewing_per_prop(x).each do |property| %>
         <tr>
           <td><%= property.name %></td>
@@ -84,8 +133,11 @@
 
         </tr>
       <% end %>
+      <% end %>
     </tbody>
   </table>
-<% end %>
+
 
 </br>
+  </div>
+  </div>

@@ -34,9 +34,13 @@ $( document ).on('turbolinks:load', function() {
     return false;
   });
 
+  $('.target').pushpin({
+      top: 0,
+      bottom: 1000,
+      offset: 0
+    });
 
-
-
+    $('.modal').modal();
 
 // function scrollAndToggle(elem) {
 //   var position = $(elem).attr("href");
