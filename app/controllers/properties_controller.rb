@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
   # GET /properties
   # GET /properties.json
   def index
-    @lease_terms = [7,10,11,12,13,14,15] # probably current_user.lease_terms
+    @lease_terms = [7,12,14,16,18] # probably current_user.lease_terms
     # @available = Property.available
 
     # need a building model

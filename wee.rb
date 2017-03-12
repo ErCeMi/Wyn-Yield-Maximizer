@@ -1,4 +1,3 @@
-require 'date'
-require 'active_support'
+a = ["pepe","papo","mima"]
 
- print DateTime.now.next_month(4)
+ print a.index("pepe")
