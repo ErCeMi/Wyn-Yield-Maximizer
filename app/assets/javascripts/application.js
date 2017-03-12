@@ -22,17 +22,15 @@ $( document ).on('turbolinks:load', function() {
 
   $('select').material_select();
 
+  $('#Kendall').click(function(){
+    console.log('hello bob!');
+    $(this).find('tbody').toggleClass('testclass');
+
 
   });
+  });
 
-  $("#employees th a, #employees .pagination a").on("click", function() {
-    $.getScript(this.href);
-    return false;
-  });
-  $("#employees_search input").keyup(function() {
-    $.get($("#employees_search").attr("action"), $("#employees_search").serialize(), null, "script");
-    return false;
-  });
+
 
   $('.target').pushpin({
       top: 0,
