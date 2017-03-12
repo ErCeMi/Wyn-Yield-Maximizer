@@ -11,6 +11,11 @@ Rails.application.routes.draw do
    get '/logout' => 'sessions#destroy'
    get '/renewal' => 'properties#renewal'
 
+   get '/update' => 'properties#update'
+   post '/update' => 'properties#submit'
+
+
+
   resources :properties
   #   member do
   #     get 'report'
