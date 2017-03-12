@@ -49,7 +49,7 @@
       9-columns-wide on large screens,
       8-columns-wide on medium screens,
       12-columns-wide on small screens  -->
-
+<%(Property.building_names).each do |x| %>
 
   <table id=x class="centered highlight responsive-table">
 
@@ -73,8 +73,9 @@
     </thead>
 
     <tbody>
-      <%(Property.building_names).each do |x| %>
-      <% Property.renewing_per_prop(x).each do |property| %>
+
+
+      <% Property.renewing_per_prop(x).sort_by{|k| k.move_out || DateTime.now.next_month(12) }.each do |property| %>
         <tr>
           <td><%= property.name %></td>
           <td><%= property.unit %></td>
@@ -133,10 +134,10 @@
 
         </tr>
       <% end %>
-      <% end %>
+
     </tbody>
   </table>
-
+  <% end %>
 
 </br>
   </div>
