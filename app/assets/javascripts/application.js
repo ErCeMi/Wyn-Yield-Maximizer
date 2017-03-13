@@ -22,23 +22,47 @@ $( document ).on('turbolinks:load', function() {
 
   $('select').material_select();
 
-  $('#Kendall').click(function(){
+  $('div .dropdown-menu').click(function(){
     console.log('hello bob!');
-    $(this).find('tbody').toggleClass('testclass');
-
-
-  });
-  });
-
-
-
-  $('.target').pushpin({
-      top: 0,
-      bottom: 1000,
-      offset: 0
+    $(' div .wth').toggle();
     });
 
-    $('.modal').modal();
+  $('div .Aventura.Isles').click(function(){
+    console.log('hello bob!');
+    $('table.Aventura.Isles').toggleClass('testclass');
+    });
+
+  $('div .Kendall.Lakes').click(function(){
+    console.log('hello bob!');
+    $('table.Kendall.Lakes').toggleClass('testclass');
+    });
+
+  $('div .Grove.Palms').click(function(){
+    console.log('hello bob!');
+    $('table.Grove.Palms').toggleClass('testclass');
+    });
+
+  $('div .Biscayne.Vista').click(function(){
+    console.log('hello bob!');
+    $('table.Biscayne.Vista').toggleClass('testclass');
+
+
+
+
+
+
+  });
+  });
+
+
+
+  // $('.target').pushpin({
+  //     top: 0,
+  //     bottom: 1000,
+  //     offset: 0
+  //   });
+  //
+  //   $('.modal').modal();
 
 // function scrollAndToggle(elem) {
 //   var position = $(elem).attr("href");
