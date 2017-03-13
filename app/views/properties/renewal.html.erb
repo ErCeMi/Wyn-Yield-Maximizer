@@ -46,13 +46,17 @@
       8-columns-wide on medium screens,
       12-columns-wide on small screens  -->
 <div class="dropdown-menu">Choose you city</div>
-<div class="options-dropdown testclass">
+<div class="wth">
   <% Property.building_names.each do |r| %>
-    <h2><%=r%></h2>
+    <div class="<%=r%>"><h2><%=r%></h2></div>
     <% end %>
 </div>
 <%(Property.building_names).each do |x| %>
-  <table id="<%=x%>" class="centered highlight responsive-table">
+
+
+  <table class="<%=x%> class=centered highlight responsive-table testclass">
+
+
     <thead>
       <tr>
         <th>Name</th>
