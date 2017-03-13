@@ -12,24 +12,17 @@
 </ul>
 <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
        -->
-<div class="row">
-  <div class="col s12 m4 l2"> <!-- Note that "m4 l3" was added -->
-    <div class="card">
+<div class="row ">
+  <div class="col s12 m4 l2 "> <!-- Note that "m4 l3" was added -->
+    <div class="card ">
       <div class="card-image">
-
-<div class="transparency"></div>
-
+        <div class="transparency"></div>
         <%= image_tag("available.jpg", :alt => "home decor") %>
-
-        <span class="card-title">Available Properties</span>
       </div>
       <div class="card-content">
-
       </div>
       <div class="card-action">
         <div class="container">
-
-
         <a href="#">
           <%= @current_user.company.name %>
           Portfolio
@@ -38,8 +31,8 @@
       </div>
     </div>
     <div class="collection">
-      <a href="/update" class="collection-item"> Import CSV</a>
-      <a class="collection-item" href="#modal1">Import CSV Modal</a>
+
+      <a class="collection-item" href="#modal1">Import CSV </a>
       <a href="#!" class="collection-item"> Export CSV</a>
       <a href="#!" class="collection-item">Print PDF</a>
       <a href="#!" class="collection-item"> Settings</a>
@@ -50,19 +43,19 @@
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Upload CSV</h4>
-      <%= form_tag({action: :submit}, multipart: true) do %>
-        <%= file_field_tag 'CSV' %>
+      <h3>Upload CSV</h3>
+      <%= form_tag({action: :submit}, multipart: true) do %><br>
+        <%= file_field_tag 'CSV' %><br>
+        <!-- <h4>Unit Availability Update</h4> -->
+        <p>Upload your csv to update the unit availability.</p><br>
+        <%= submit_tag("Upload") %>
       <% end %>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
     </div>
   </div>
 
 
   <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+<h1>Available Properties</h1>
     <!-- Teal page content
 
           This content will be:
@@ -92,7 +85,6 @@
         </tr>
       </thead>
       <tbody>
-
         <% Property.available_per_prop(x).sort_by{|k| k.move_out || DateTime.now.next_month(12) }.each do |property| %>
           <tr>
             <td><%= property.name %></td>
@@ -141,7 +133,6 @@
             <% end %>
           </tr>
         <% end %>
-
       </tbody>
     </table>
   <% end %>

@@ -108,17 +108,19 @@ class PropertiesController < ApplicationController
   end
 
   def update
+
   end
 
   def submit
     require 'csv'
     require 'open-uri'
     Property.destroy_all
-    
+
     csv_text = File.read(params[:CSV].tempfile)
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1') #skip_blanks: true)#.reject { |row| row.all?(&:nil?) }
 
     csv.each do |row|
+      next if row.blank?
       t = Property.new
       t.lol = row['lol']
       t.name = row['name']

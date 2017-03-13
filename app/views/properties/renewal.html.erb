@@ -1,32 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<!-- Navbar goes here -->
-
-<!-- Page Layout here -->
-<!-- <ul id="slide-out" class="side-nav fixed">
-  <li><a href="#!">First Sidebar Link</a></li>
-  <li><a href="#!">Second Sidebar Link</a></li>
-</ul>
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-       -->
 <div class="row">
   <div class="col s12 m4 l2"> <!-- Note that "m4 l3" was added -->
     <div class="card">
       <div class="card-image">
-
-
-<div class="transparency"></div>
+        <div class="transparency"></div>
         <%= image_tag("renewal.jpg", :alt => "home decor") %>
-
-        <span class="card-title">Renewal Properties</span>
       </div>
       <div class="card-content">
-
       </div>
       <div class="card-action">
         <div class="conatiner">
-
-
         <a href="#">
           <%= @current_user.company.name %>
           Portfolio
@@ -35,14 +19,26 @@
       </div>
     </div>
     <div class="collection">
-      <a href="/update" class="collection-item"> Import CSV</a>
+      <a class="collection-item" href="#modal1">Import CSV </a>
       <a href="#!" class="collection-item"> Export CSV</a>
       <a href="#!" class="collection-item">Print PDF</a>
       <a href="#!" class="collection-item"> Settings</a>
     </div>
   </div>
-
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h3>Upload CSV</h3>
+      <%= form_tag({action: :submit}, multipart: true) do %><br>
+        <%= file_field_tag 'CSV' %><br>
+        <!-- <h4>Unit Availability Update</h4> -->
+        <p>Upload your csv to update the unit availability.</p><br>
+        <%= submit_tag("Upload") %>
+      <% end %>
+    </div>
+  </div>
   <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+<h1>Renewal Properties</h1>
     <!-- Teal page content
 
           This content will be:
@@ -56,11 +52,7 @@
     <% end %>
 </div>
 <%(Property.building_names).each do |x| %>
-
   <table id="<%=x%>" class="centered highlight responsive-table">
-
-
-
     <thead>
       <tr>
         <th>Name</th>
@@ -77,10 +69,7 @@
         <% end %>
       </tr>
     </thead>
-
     <tbody>
-
-
       <% Property.renewing_per_prop(x).sort_by{|k| k.move_out || DateTime.now.next_month(12) }.each do |property| %>
         <tr>
           <td><%= property.name %></td>
@@ -137,14 +126,11 @@
               <% end %>
             <%end %>
         <%end %>
-
         </tr>
       <% end %>
-
     </tbody>
   </table>
   <% end %>
-
 </br>
   </div>
   </div>

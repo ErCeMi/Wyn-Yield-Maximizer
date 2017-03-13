@@ -1,11 +1,11 @@
-<div class="container">
+
   <!-- PAGINATION -->
   <%= will_paginate @employees %>
 
   <%= hidden_field_tag :direction, params[:direction] %>
   <%= hidden_field_tag :sort, params[:sort] %>
-  
-  <table class="centered highlight responsive-table">
+
+  <table class=" highlight responsive-table">
     <thead>
       <tr>
         <th><%= sort_link "name" %></th>
@@ -34,4 +34,3 @@
 <br>
 <!-- PAGINATION -->
 <%= will_paginate @employees %>
-</div>

@@ -19,7 +19,7 @@ $( document ).on('turbolinks:load', function() {
   $('.parallax').parallax();
   console.log("It works on each visit!")
   $(".button-collapse").sideNav();
-
+  $('.modal').modal();
   $('select').material_select();
 
   $('#Kendall').click(function(){
@@ -27,18 +27,18 @@ $( document ).on('turbolinks:load', function() {
     $(this).find('tbody').toggleClass('testclass');
 
 
+      $('.target').pushpin({
+          top: 0,
+          bottom: 1000,
+          offset: 0
+        });
+
+
   });
   });
 
 
 
-  $('.target').pushpin({
-      top: 0,
-      bottom: 1000,
-      offset: 0
-    });
-
-    $('.modal').modal();
 
 // function scrollAndToggle(elem) {
 //   var position = $(elem).attr("href");
