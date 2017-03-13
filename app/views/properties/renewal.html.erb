@@ -45,18 +45,17 @@
       9-columns-wide on large screens,
       8-columns-wide on medium screens,
       12-columns-wide on small screens  -->
-<div class="dropdown-menu">Choose you city</div>
-<div class="wth">
-  <% Property.building_names.each do |r| %>
-    <div class="<%=r%>"><h2><%=r%></h2></div>
-    <% end %>
-</div>
+      <div class="dropdown-menu">Please choose your portfolio</div>
+      <div class=" wth">
+        <% Property.building_names.each do |r| %>
+          <div class="col s3 blue-grey lighten-4 waves-effect waves-light btn-large <%=r%>"><h6><%=r%></h6></div>
+        <% end %>
+      </div>
+
+
+
 <%(Property.building_names).each do |x| %>
-
-
   <table class="<%=x%> class=centered highlight responsive-table testclass">
-
-
     <thead>
       <tr>
         <th>Name</th>
