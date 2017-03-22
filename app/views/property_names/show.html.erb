@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Property name:</strong>
+  <%= @property_name.name %>
+</p>
+<p>
+  <strong>Lease terms:</strong>
+  <%= @property_name.lease_terms %>
+</p>
+
+<%= link_to 'Edit', edit_property_name_path(@property_name) %> |
+<%= link_to 'Back', property_names_path %>

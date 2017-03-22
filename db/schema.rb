@@ -79,17 +79,13 @@ ActiveRecord::Schema.define(version: 20170309220904) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.string   "lol"
-    t.string   "name"
+    t.string   "lol3"
     t.string   "unit"
-    t.string   "unit_type"
-    t.integer  "bedroom"
     t.string   "group"
     t.string   "tenantid"
     t.string   "resident_name"
     t.integer  "resident_rent"
     t.integer  "unit_rent"
-    t.integer  "discount"
     t.string   "status"
     t.integer  "days_vacant"
     t.date     "move_in"
@@ -98,11 +94,36 @@ ActiveRecord::Schema.define(version: 20170309220904) do
     t.date     "lease_to"
     t.string   "amenities"
     t.integer  "company_id"
+    t.integer  "unit_type_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["company_id"], name: "index_properties_on_company_id", using: :btree
+    t.index ["unit_type_id"], name: "index_properties_on_unit_type_id", using: :btree
+  end
+
+  create_table "property_names", force: :cascade do |t|
+    t.string   "lol1"
+    t.string   "name"
+    t.string   "lease_terms"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "unit_types", force: :cascade do |t|
+    t.string   "lol2"
+    t.string   "unit_type"
+    t.string   "bedroom"
+    t.integer  "amount_off"
+    t.float    "percentage_off"
+    t.float    "growth_rate"
+    t.integer  "property_name_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["property_name_id"], name: "index_unit_types_on_property_name_id", using: :btree
   end
 
   add_foreign_key "employees", "companies"
   add_foreign_key "properties", "companies"
+  add_foreign_key "properties", "unit_types"
+  add_foreign_key "unit_types", "property_names"
 end

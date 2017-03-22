@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :property_names
+  resources :unit_types
    root  to: "pages#home"
 
    get "/pages/*page" => "pages#home"
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
    get '/update' => 'properties#update'
    post '/update' => 'properties#submit'
 
+   get '/raw' => 'properties#raw'
 
 
   resources :properties

@@ -1,5 +1,9 @@
 class Property < ApplicationRecord
+
   belongs_to :company
+  belongs_to :unit_type
+  has_many :property_names, through: :unit_type
+
 
   # @prices = []
   # @price_spread = []
@@ -12,7 +16,7 @@ class Property < ApplicationRecord
 
   # This should be an associaiton to a building model
   def self.building_names
-    self.pluck(:name).uniq
+    PropertyName.pluck(:name).uniq
   end
 
   ##
@@ -35,7 +39,8 @@ class Property < ApplicationRecord
   end
 
   def self.available_per_prop(prop_name)
-    self.available.where(name: prop_name)
+    # self.available.where(name: prop_name)
+    (self.available.joins(:unit_type).joins(:property_names)).where(:property_names => {:name => prop_name})
   end
 
   def self.renewing_per_prop(prop_name)
@@ -140,24 +145,77 @@ class Property < ApplicationRecord
 
 
     end
+
+    # This method can be modular by passing in next_month variable
+    # def num_expirations_by_month (next_month, lease_lengths, building_name, num_bedrooms)
+    #
+    #   # Set the current date
+    #   current_date = DateTime.now
+    #
+    #   # If next_month is set, reset current_date to next_month months in the future
+    #   if (next_month > 0)
+    #
+    #     current_date = DateTime.now.next_month(next_month)
+    #   end
+    #
+    #   # This is what will be returned
+    #   results = []
+    #
+    #   # Iterate through the lease lengths
+    #   lease_lengths.map { |month|
+    #
+    #     # Stores unix timestamp. This is the time when you're going to check if the lease is up.
+    #     check_lease_in = (current_date + month.months)
+    #     start_of_month = check_lease_in.beginning_of_month.to_i
+    #     end_of_month = check_lease_in.end_of_month.to_i
+    #
+    #     # Find the property_name object we're looking
+    #     property_name = PropertyName.where(name: building_name)[0]
+    #
+    #     # Grab that property_name's unit_types filtered by num of bedrooms
+    #     unit_types = property_name.unit_types.where(bedroom: num_bedrooms)
+    #
+    #
+    #     # Iterate through unit_types to find
+    #     unit_types.map { |ut|
+    #
+    #       # Loop through unit_type's properties to extract dates
+    #       ut.properties.map { |property|
+    #
+    #         # Turn lease_to into a unix timestamp
+    #         lease_to = property.lease_to.to_datetime.to_i
+    #
+    #         if lease_to >= start_of_month && lease_to <= end_of_month
+    #
+    #           results.push property
+    #         end
+    #
+    #       }
+    #
+    #     }
+    #   }
+    #
+    #   # Return the results
+    #   results
+    # end
+
     # number of units expiring at various lease lengths
     def num_expirations_by_month_0(lease_lengths, building_name, num_bedrooms)
       current_date = DateTime.now
       lease_lengths.map { |month|
         month_range = (current_date + month.months)
-        Property.where(name: building_name, bedroom: num_bedrooms,
-          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
-          ).count
+        (Property.joins(:unit_type).joins(:property_names)).where(:property_names => {:name => building_name}, :unit_types => {bedroom: num_bedrooms}, lease_to: (month_range.beginning_of_month..month_range.end_of_month)).count
       }
     end
+
+
+
 
     def num_expirations_by_month_1(lease_lengths, building_name, num_bedrooms)
       current_date = DateTime.now.next_month(1)
       lease_lengths.map { |month|
         month_range = (current_date + month.months)
-        Property.where(name: building_name, bedroom: num_bedrooms,
-          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
-          ).count
+        (Property.joins(:unit_type).joins(:property_names)).where(:property_names => {:name => building_name}, :unit_types => {bedroom: num_bedrooms}, lease_to: (month_range.beginning_of_month..month_range.end_of_month)).count
       }
     end
 
@@ -165,9 +223,7 @@ class Property < ApplicationRecord
       current_date = DateTime.now.next_month(2)
       lease_lengths.map { |month|
         month_range = (current_date + month.months)
-        Property.where(name: building_name, bedroom: num_bedrooms,
-          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
-          ).count
+        (Property.joins(:unit_type).joins(:property_names)).where(:property_names => {:name => building_name}, :unit_types => {bedroom: num_bedrooms}, lease_to: (month_range.beginning_of_month..month_range.end_of_month)).count
       }
     end
 
@@ -175,9 +231,7 @@ class Property < ApplicationRecord
       current_date = DateTime.now.next_month(3)
       lease_lengths.map { |month|
         month_range = (current_date + month.months)
-        Property.where(name: building_name, bedroom: num_bedrooms,
-          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
-          ).count
+        (Property.joins(:unit_type).joins(:property_names)).where(:property_names => {:name => building_name}, :unit_types => {bedroom: num_bedrooms}, lease_to: (month_range.beginning_of_month..month_range.end_of_month)).count
       }
     end
 
@@ -185,9 +239,7 @@ class Property < ApplicationRecord
       current_date = DateTime.now.next_month(4)
       lease_lengths.map { |month|
         month_range = (current_date + month.months)
-        Property.where(name: building_name, bedroom: num_bedrooms,
-          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
-          ).count
+        (Property.joins(:unit_type).joins(:property_names)).where(:property_names => {:name => building_name}, :unit_types => {bedroom: num_bedrooms}, lease_to: (month_range.beginning_of_month..month_range.end_of_month)).count
       }
     end
 
@@ -195,9 +247,7 @@ class Property < ApplicationRecord
       current_date = DateTime.now.next_month(5)
       lease_lengths.map { |month|
         month_range = (current_date + month.months)
-        Property.where(name: building_name, bedroom: num_bedrooms,
-          lease_to: (month_range.beginning_of_month..month_range.end_of_month)
-          ).count
+        (Property.joins(:unit_type).joins(:property_names)).where(:property_names => {:name => building_name}, :unit_types => {bedroom: num_bedrooms}, lease_to: (month_range.beginning_of_month..month_range.end_of_month)).count
       }
     end
 

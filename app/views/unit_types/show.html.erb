@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @unit_type.type %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @unit_type.name %>
+</p>
+
+<p>
+  <strong>Bedroom:</strong>
+  <%= @unit_type.bedroom %>
+</p>
+
+<p>
+  <strong>Amount off:</strong>
+  <%= @unit_type.amount_off %>
+</p>
+
+<p>
+  <strong>Percentage off:</strong>
+  <%= @unit_type.percentage_off %>
+</p>
+
+<%= link_to 'Edit', edit_unit_type_path(@unit_type) %> |
+<%= link_to 'Back', unit_types_path %>

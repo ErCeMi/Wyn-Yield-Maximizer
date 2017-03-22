@@ -1,0 +1,22 @@
+<table class="<%= building_name %> centered highlight responsive-table testclass">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Unit</th>
+      <th>Unit Type</th>
+      <th>Groups</th>
+      <th>Available</th>
+      <th>Amenity</th>
+      <th>Days Vacant</th>
+      <% @lease_terms.each do |month| %>
+        <th><%= month %> mo.</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% Property.available_per_prop(building_name).sort_by{ |k| k.move_out || DateTime.now.next_month(12) }.each do |property| %>
+
+      <%= render "properties/building_names/property" :property => property %>
+    <% end %>
+  </tbody>
+</table>

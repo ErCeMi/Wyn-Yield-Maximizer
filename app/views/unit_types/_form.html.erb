@@ -1,0 +1,42 @@
+<%= form_for(unit_type) do |f| %>
+  <% if unit_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(unit_type.errors.count, "error") %> prohibited this unit_type from being saved:</h2>
+
+      <ul>
+      <% unit_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type %>
+    <%= f.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bedroom %>
+    <%= f.text_field :bedroom %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount_off %>
+    <%= f.number_field :amount_off %>
+  </div>
+
+  <div class="field">
+    <%= f.label :percentage_off %>
+    <%= f.text_field :percentage_off %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

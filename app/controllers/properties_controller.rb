@@ -3,8 +3,27 @@ class PropertiesController < ApplicationController
   before_action :authorize
   # GET /properties
   # GET /properties.json
+  def raw
+
+    @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
+    # @available = Property.available
+    # render :layout => false
+
+    # need a building model
+    # building has_many properties
+    # property belongs_to building
+    @buildings = Property.building_names
+
+
+    @bed_premiums_per_building = {}
+
+    @buildings.each do |building_name|
+      @bed_premiums_per_building[building_name] = Property::PerBedPremium.new(building_name, @lease_terms )
+    end
+    render :layout => false
+  end
   def index
-    @lease_terms = [7,12,14,16,18] # probably current_user.lease_terms
+    @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
     # @available = Property.available
 
     # need a building model
@@ -27,7 +46,7 @@ class PropertiesController < ApplicationController
     end
 
     def renewal
-      @lease_terms = [7,10,11,12,13,14,15] # probably current_user.lease_terms
+      @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
       @available = Property.available
       @renewing = Property.renewing
       @premium = 1.015
@@ -123,16 +142,12 @@ class PropertiesController < ApplicationController
       next if row.blank?
       t = Property.new
       t.lol = row['lol']
-      t.name = row['name']
       t.unit = row['unit']
-      t.unit_type = row['unit_type']
-      t.bedroom = row['bedroom']
       t.group = row['group']
       t.tenantid = row['tenantid']
       t.resident_name = row['resident_name']
       t.resident_rent = row['resident_rent']
       t.unit_rent = row['unit_rent']
-      t.discount = row['discount']
       t.status = row['status']
       t.days_vacant = row['days_vacant']
       t.move_in = row['move_in'] ? Date.strptime(row['move_in'], '%m/%d/%y') : nil
@@ -194,6 +209,6 @@ class PropertiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit(:lol,:name, :unit, :unit_type, :bedroom, :group, :tenantid, :resident_name, :resident_rent, :unit_rent, :discount, :status, :days_vacant, :move_in, :move_out, :lease_from, :lease_to, :amenities, :company_id)
+      params.require(:property).permit(:lol3, :unit, :group, :tenantid, :resident_name, :resident_rent, :unit_rent, :discount, :status, :days_vacant, :move_in, :move_out, :lease_from, :lease_to, :amenities, :company_id, :unit_type_id)
     end
 end

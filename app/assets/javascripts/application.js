@@ -27,25 +27,138 @@ $( document ).on('turbolinks:load', function() {
     $(' div .wth').toggle();
     });
 
-  $('div .Aventura.Isles').click(function(){
-    console.log('hello bob!');
-    $('table.Aventura.Isles').toggleClass('testclass');
+    $('div .Aventura.Isles').click(function(){
+  console.log('hello bob!');
+  $('table.Aventura.Isles').toggleClass('testclass');
+  });
+
+$('div .Kendall.Lakes').click(function(){
+  console.log('hello bob!');
+  $('table.Kendall.Lakes').toggleClass('testclass');
+  });
+
+$('div .Grove.Palms').click(function(){
+  console.log('hello bob!');
+  $('table.Grove.Palms').toggleClass('testclass');
+  });
+
+$('div .Biscayne.Vista').click(function(){
+  console.log('hello bob!');
+  $('table.Biscayne.Vista').toggleClass('testclass');
+  });
+
+  $('div .Royalton.on.the.Green.Apartments').click(function(){
+
+    $('table.Royalton.on.the.Green.Apartments').toggleClass('testclass');
     });
 
-  $('div .Kendall.Lakes').click(function(){
-    console.log('hello bob!');
-    $('table.Kendall.Lakes').toggleClass('testclass');
+  $('div .Lago.Club').click(function(){
+
+    $('table.Lago.Club').toggleClass('testclass');
     });
 
-  $('div .Grove.Palms').click(function(){
-    console.log('hello bob!');
-    $('table.Grove.Palms').toggleClass('testclass');
+  $('div .Intracoastal.Yacht.Club').click(function(){
+
+    $('table.Intracoastal.Yacht.Club').toggleClass('testclass');
     });
 
-  $('div .Biscayne.Vista').click(function(){
-    console.log('hello bob!');
-    $('table.Biscayne.Vista').toggleClass('testclass');
+  $('div .Colony.at.Dadeland').click(function(){
 
+    $('table.Colony.at.Dadeland').toggleClass('testclass');
+    });
+
+  $('div .Royal.Palms').click(function(){
+
+    $('table.Royal.Palms').toggleClass('testclass');
+    });
+
+  $('div .Suncoast.Place').click(function(){
+
+    $('table.Suncoast.Place').toggleClass('testclass');
+    });
+
+  $('div .Stadium.Tower').click(function(){
+
+    $('table.Stadium.Tower').toggleClass('testclass');
+    });
+
+  $('div .Brickell.First').click(function(){
+
+    $('table.Brickell.First').toggleClass('testclass');
+    });
+
+  $('div .Sunshine.Lakes.Apartments').click(function(){
+
+    $('table.Sunshine.Lakes.Apartments').toggleClass('testclass');
+    });
+
+
+  $('div .Cypress.Place.Holdings').click(function(){
+
+    $('table.Cypress.Place.Holdings').toggleClass('testclass');
+    });
+
+  $('div .Miami.Riverfront.Residences').click(function(){
+
+    $('table.Miami.Riverfront.Residences').toggleClass('testclass');
+    });
+
+
+  $('div .Gables.37').click(function(){
+
+    $('table.Gables.37').toggleClass('testclass');
+    });
+
+
+  $('div .Cypress.Place.Holdings').click(function(){
+
+    $('table.Cypress.Place.Holdings').toggleClass('testclass');
+    });
+
+
+  $('div .2500.Inverrary.Club.Apartments').click(function(){
+
+    $('table.2500.Inverrary.Club.Apartments').toggleClass('testclass');
+    });
+
+  $('div .Inverarry.441.Apartments').click(function(){
+
+    $('table.Inverarry.441.Apartments').toggleClass('testclass');
+    });
+
+  $('div .Country.Club.Towers').click(function(){
+
+    $('table.Country.Club.Towers').toggleClass('testclass');
+    });
+
+  $('div .Cherry.Grove.Village.Apartments').click(function(){
+
+    $('table.Cherry.Grove.Village.Apartments').toggleClass('testclass');
+    });
+
+  $('div .Fontainebleau.Milton').click(function(){
+
+    $('table.Fontainebleau.Milton').toggleClass('testclass');
+    });
+
+  $('div .International.Club.Apartments').click(function(){
+
+    $('table.International.Club.Apartments').toggleClass('testclass');
+    });
+
+  $('div .Las.Brisas.Gardens.Apts').click(function(){
+
+    $('table.Las.Brisas.Gardens.Apts').toggleClass('testclass');
+    });
+
+  $('div .Miami.Bay.Waterfront.Midtown.Residences').click(function(){
+
+    $('table.Miami.Bay.Waterfront.Midtown.Residences').toggleClass('testclass');
+    });
+
+  $('div .Westland.49.Apartments').click(function(){
+
+    $('table.Westland.49.Apartments').toggleClass('testclass');
 
 
 

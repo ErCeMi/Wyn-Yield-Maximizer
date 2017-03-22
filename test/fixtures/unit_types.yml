@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  name: MyString
+  bedroom: MyString
+  amount_off: 1
+  percentage_off: 1.5
+
+two:
+  type: 
+  name: MyString
+  bedroom: MyString
+  amount_off: 1
+  percentage_off: 1.5
