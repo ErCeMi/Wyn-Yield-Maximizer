@@ -17,6 +17,7 @@ class Property < ApplicationRecord
   # This should be an associaiton to a building model
   def self.building_names
     PropertyName.pluck(:name).uniq
+    
   end
 
   ##
@@ -44,7 +45,7 @@ class Property < ApplicationRecord
   end
 
   def self.renewing_per_prop(prop_name)
-    self.renewing.where(name: prop_name)
+    (self.renewing.joins(:unit_type).joins(:property_names)).where(:property_names => {:name => prop_name})
   end
   ##
   def self.to_csv

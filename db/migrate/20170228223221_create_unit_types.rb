@@ -7,6 +7,8 @@ class CreateUnitTypes < ActiveRecord::Migration[5.0]
       t.integer :amount_off
       t.float :percentage_off
       t.float :growth_rate
+      t.float :increase_amount
+      t.date :market_rate_date
       t.references :property_name, foreign_key: true
 
       t.timestamps

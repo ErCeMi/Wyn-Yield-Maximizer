@@ -67,7 +67,7 @@
         <th> Resident </th>
         <th> Going Price </th>
         <th>Current Rent</th>
-        <% @lease_terms.each do |month| %>
+        <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
           <th><%= month %> mo.</th>
         <% end %>
       </tr>
@@ -75,57 +75,56 @@
     <tbody>
       <% Property.renewing_per_prop(x).sort_by{|k| k.move_out || DateTime.now.next_month(12) }.each do |property| %>
         <tr>
-          <td><%= property.name %></td>
+          <td><%= x %></td>
           <td><%= property.unit %></td>
-          <td><%= property.unit_type %></td>
+          <td><%= property.unit_type.unit_type %></td>
           <td><%= property.group %></td>
           <th><%= property.lease_to %></td>
           <td><%= property.amenities %></td>
           <td><%= property.resident_name %> </td>
-          <td><%= (property.unit_rent - property.discount) %> </td>
+          <td><%= (property.unit_rent - property.unit_type.amount_off) %> </td>
           <td><%= property.resident_rent %></td>
-          <% if property.resident_rent * @premium >= (property.unit_rent - property.discount) %>
+          <% if property.resident_rent * @premium >= (property.unit_rent - property.unit_type.amount_off) %>
             <% if property.lease_to.strftime("%Y%m") <= DateTime.now.strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent0((property.resident_rent), property.bedroom, month), precision: 0 %></th>
+              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
+                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent0((property.resident_rent), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
               <% end %>
             <% elsif property.lease_to.strftime("%Y%m") == DateTime.now.next_month(1).strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent1((property.resident_rent), property.bedroom, month), precision: 0 %></th>
+              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
+                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent1((property.resident_rent), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
               <% end %>
             <% elsif property.lease_to.strftime("%Y%m") == DateTime.now.next_month(2).strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent2((property.resident_rent), property.bedroom, month), precision: 0 %></th>
+              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
+                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent2((property.resident_rent), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
               <% end %>
             <% elsif property.lease_to.strftime("%Y%m") == DateTime.now.next_month(3).strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent3((property.resident_rent), property.bedroom, month), precision: 0 %></th>
+              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
+                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent3((property.resident_rent), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
               <% end %>
             <% elsif property.lease_to.strftime("%Y%m") == DateTime.now.next_month(4).strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent4((property.resident_rent), property.bedroom, month), precision: 0 %></th>
+              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
+                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent4((property.resident_rent), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
               <% end %>
             <% end %>
           <% else %>
             <% if property.lease_to.strftime("%Y%m") <= DateTime.now.strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent0(((property.resident_rent * @premium).round), property.bedroom, month), precision: 0 %></th>
+              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}s.each do |month| %>
+                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent0(((property.resident_rent * @premium).round), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
               <% end %>
             <% elsif property.lease_to.strftime("%Y%m") == DateTime.now.next_month(1).strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent1(((property.resident_rent * @premium).round), property.bedroom, month), precision: 0 %></th>
+              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
+                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent1(((property.resident_rent * @premium).round), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
               <% end %>
             <% elsif property.lease_to.strftime("%Y%m") == DateTime.now.next_month(2).strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent2(((property.resident_rent * @premium).round), property.bedroom, month), precision: 0 %></th>
+              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
+                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent2(((property.resident_rent * @premium).round), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
               <% end %>
             <% elsif property.lease_to.strftime("%Y%m") == DateTime.now.next_month(3).strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent3(((property.resident_rent * @premium).round), property.bedroom, month), precision: 0 %></th>
+              <% @lease_termsPropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent3(((property.resident_rent * @premium).round), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
               <% end %>
             <% elsif property.lease_to.strftime("%Y%m") == DateTime.now.next_month(4).strftime("%Y%m") %>
-              <% @lease_terms.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[property.name].calculate_rent4(((property.resident_rent * @premium).round), property.bedroom, month), precision: 0 %></th>
+              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
+                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent4(((property.resident_rent * @premium).round), property.unit_type.bedroom, month), precision: 0 %></th>
               <% end %>
             <%end %>
         <%end %>

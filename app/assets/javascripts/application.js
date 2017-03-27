@@ -27,14 +27,19 @@ $( document ).on('turbolinks:load', function() {
     $(' div .wth').toggle();
     });
 
-    $('div .Aventura.Isles').click(function(){
+    $('div .Aventura.Harbor.Apartments').click(function(){
   console.log('hello bob!');
-  $('table.Aventura.Isles').toggleClass('testclass');
+  $('table.Aventura.Harbor.Apartments').toggleClass('testclass');
   });
 
 $('div .Kendall.Lakes').click(function(){
   console.log('hello bob!');
   $('table.Kendall.Lakes').toggleClass('testclass');
+  });
+
+  $('div .Cypress.Place.Holdings').click(function(){
+    console.log('hello bob!');
+    $('table.Cypress.Place.Holdings').toggleClass('testclass');
   });
 
 $('div .Grove.Palms').click(function(){

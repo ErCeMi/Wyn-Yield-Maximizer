@@ -70,6 +70,8 @@ csv2.each do |row|
   t.amount_off= row['amount_off']
   t.percentage_off = row['percentage_off']
   t.growth_rate = row['growth_rate']
+  t.increase_amount = row['increase_amount']
+  t.market_rate_date = row['market_rate_date']
   t.property_name_id = row['property_name_id']
   t.save!
 end

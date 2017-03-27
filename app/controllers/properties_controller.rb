@@ -5,7 +5,7 @@ class PropertiesController < ApplicationController
   # GET /properties.json
   def raw
 
-    @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
+    # @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
     # @available = Property.available
     # render :layout => false
 
@@ -23,19 +23,19 @@ class PropertiesController < ApplicationController
     render :layout => false
   end
   def index
-    @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
+    # @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
     # @available = Property.available
 
     # need a building model
     # building has_many properties
     # property belongs_to building
     @buildings = Property.building_names
-
+    wattagattabitus = Property.joins(:unit_type).joins(:property_names)
 
     @bed_premiums_per_building = {}
 
-    @buildings.each do |building_name|
-      @bed_premiums_per_building[building_name] = Property::PerBedPremium.new(building_name, @lease_terms )
+    PropertyName.all.each do |building_name|
+      @bed_premiums_per_building[building_name.name] = Property::PerBedPremium.new(building_name.name, (building_name.lease_terms.split(",").map{ |i| i.to_i}) )
     end
 
 
@@ -46,7 +46,7 @@ class PropertiesController < ApplicationController
     end
 
     def renewal
-      @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
+      # @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
       @available = Property.available
       @renewing = Property.renewing
       @premium = 1.015
