@@ -11,15 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :type %>
-    <%= f.text_field :type %>
-  </div>
+  
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :unit_type %>
+    <%= f.text_field :unit_type %>
   </div>
+
 
   <div class="field">
     <%= f.label :bedroom %>
@@ -34,6 +32,21 @@
   <div class="field">
     <%= f.label :percentage_off %>
     <%= f.text_field :percentage_off %>
+  </div>
+
+  <div class="field">
+    <%= f.label :growth_rate %>
+    <%= f.text_field :growth_rate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :increase_amount %>
+    <%= f.text_field :increase_amount %>
+  </div>
+
+  <div class="field">
+    <%= f.label :market_rate_date %>
+    <%= f.text_field :market_rate_date %>
   </div>
 
   <div class="actions">

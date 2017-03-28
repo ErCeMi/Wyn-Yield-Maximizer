@@ -17,11 +17,32 @@ class PropertiesController < ApplicationController
 
     @bed_premiums_per_building = {}
 
-    @buildings.each do |building_name|
-      @bed_premiums_per_building[building_name] = Property::PerBedPremium.new(building_name, @lease_terms )
+    PropertyName.all.each do |building_name|
+      @bed_premiums_per_building[building_name.name] = Property::PerBedPremium.new(building_name.name, (building_name.lease_terms.split(",").map{ |i| i.to_i}) )
     end
     render :layout => false
   end
+
+  def rawren
+
+    # @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
+    # @available = Property.available
+    # render :layout => false
+
+    # need a building model
+    # building has_many properties
+    # property belongs_to building
+    @buildings = Property.building_names
+
+
+    @bed_premiums_per_building = {}
+
+    PropertyName.all.each do |building_name|
+      @bed_premiums_per_building[building_name.name] = Property::PerBedPremium.new(building_name.name, (building_name.lease_terms.split(",").map{ |i| i.to_i}) )
+    end
+    render :layout => false
+  end
+
   def index
     # @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
     # @available = Property.available
@@ -30,26 +51,20 @@ class PropertiesController < ApplicationController
     # building has_many properties
     # property belongs_to building
     @buildings = Property.building_names
-    wattagattabitus = Property.joins(:unit_type).joins(:property_names)
+    # wattagattabitus = Property.joins(:unit_type).joins(:property_names)
 
     @bed_premiums_per_building = {}
 
     PropertyName.all.each do |building_name|
-      @bed_premiums_per_building[building_name.name] = Property::PerBedPremium.new(building_name.name, (building_name.lease_terms.split(",").map{ |i| i.to_i}) )
+      @bed_premiums_per_building[building_name.name] = Property::PerBedPremium.new(building_name.name, (building_name.lease_terms.split(",").map{ |i| i.to_i}))
     end
-
-
-
-    respond_to do |format|
-      format.html
-      format.csv { render text: Property.to_csv }
-    end
+  end
 
     def renewal
       # @lease_terms = [7,8,9,10,11,12] # probably current_user.lease_terms
-      @available = Property.available
-      @renewing = Property.renewing
-      @premium = 1.015
+      # @available = Property.available
+      # @renewing = Property.renewing
+
 
 
       # need a building model
@@ -60,17 +75,14 @@ class PropertiesController < ApplicationController
 
       @bed_premiums_per_building = {}
 
-      @buildings.each do |building_name|
-        @bed_premiums_per_building[building_name] = Property::PerBedPremium.new(building_name, @lease_terms )
+      PropertyName.all.each.each do |building_name|
+        @bed_premiums_per_building[building_name.name] = Property::PerBedPremium.new(building_name.name, (building_name.lease_terms.split(",").map{ |i| i.to_i}))
       end
 
-      respond_to do |format|
-        format.html
-        format.csv { render text: Property.to_csv }
-      end
+
     end
 
-  end
+
 
   # # inserted as an example of how to get an excel sheet
   # # as binary data
@@ -209,6 +221,6 @@ class PropertiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit(:lol3, :unit, :group, :tenantid, :resident_name, :resident_rent, :unit_rent, :discount, :status, :days_vacant, :move_in, :move_out, :lease_from, :lease_to, :amenities, :company_id, :unit_type_id)
+      params.require(:property).permit(:lol3, :unit, :group, :tenantid, :resident_name, :resident_rent, :unit_rent, :discount, :status, :days_vacant, :move_in, :move_out, :lease_from, :lease_to, :amenities, :discounts, :company_id, :unit_type_id)
     end
 end

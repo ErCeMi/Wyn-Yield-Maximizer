@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20170228223222) do
     t.date     "lease_from"
     t.date     "lease_to"
     t.string   "amenities"
+    t.integer  "discounts"
     t.integer  "company_id"
     t.integer  "unit_type_id"
     t.datetime "created_at",    null: false

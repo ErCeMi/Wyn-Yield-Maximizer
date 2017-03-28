@@ -71,7 +71,7 @@ csv2.each do |row|
   t.percentage_off = row['percentage_off']
   t.growth_rate = row['growth_rate']
   t.increase_amount = row['increase_amount']
-  t.market_rate_date = row['market_rate_date']
+  t.market_rate_date = row['market_rate_date'] ? Date.strptime(row['market_rate_date'], '%m/%d/%y') : nil
   t.property_name_id = row['property_name_id']
   t.save!
 end
@@ -96,10 +96,11 @@ csv3.each do |row|
   t.status = row['status']
   t.days_vacant = row['days_vacant']
   t.move_in = row['move_in'] ? Date.strptime(row['move_in'], '%m/%d/%y') : nil
-  t.move_out = row['move_out'] ? Date.strptime(row['move_out'], '%m/%d/%y') : nil
+  t.move_out = row['move_out'] ? Date.strptime(row['move_out'], '%m/%d/%y') : DateTime.now
   t.lease_from = row['lease_from'] ? Date.strptime(row['lease_from'], '%m/%d/%y') : nil
   t.lease_to = row['lease_to'] ? Date.strptime(row['lease_to'], '%m/%d/%y') : nil
   t.amenities = row['amenities']
+  t.discounts = row['discounts']
   t.company_id = row['company_id']
   t.unit_type_id = row['unit_type_id']
   t.save!

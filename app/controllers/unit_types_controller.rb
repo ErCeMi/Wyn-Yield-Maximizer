@@ -69,6 +69,6 @@ class UnitTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unit_type_params
-      params.require(:unit_type).permit(:type, :bedroom, :amount_off, :percentage_off, :growth_rate, :increase_amount, :market_rate_date :property_name_id)
+      params.require(:unit_type).permit(:type, :bedroom, :amount_off, :percentage_off, :growth_rate, :increase_amount, :market_rate_date, :property_name_id)
     end
 end

@@ -15,6 +15,7 @@ class CreateProperties < ActiveRecord::Migration[5.0]
       t.date :lease_from
       t.date :lease_to
       t.string :amenities
+      t.integer :discounts
       t.references :company, foreign_key: true
       t.references :unit_type, foreign_key: true
 

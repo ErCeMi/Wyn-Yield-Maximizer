@@ -1,3 +1,1 @@
-a = ["pepe","papo","mima"]
-
- print a.index("pepe")
+ print 1446 * 1.03

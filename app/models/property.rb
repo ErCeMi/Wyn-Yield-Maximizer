@@ -17,12 +17,13 @@ class Property < ApplicationRecord
   # This should be an associaiton to a building model
   def self.building_names
     PropertyName.pluck(:name).uniq
-    
+
   end
 
   ##
-  GROUP_VACANT = "Vacant Unrented"
-  GROUP_NOTICE = "Notice Unrented"
+  GROUP_VACANT =   "Vacant Unrented Not Ready" || "Vacant Unrented Ready"
+  GROUP_NOTICE = "Notice Unrented" 
+  $premium = 1.015
   def self.vacant
     self.where(group: GROUP_VACANT)
   end
@@ -48,14 +49,7 @@ class Property < ApplicationRecord
     (self.renewing.joins(:unit_type).joins(:property_names)).where(:property_names => {:name => prop_name})
   end
   ##
-  def self.to_csv
-    CSV.generate do |csv|
-      csv << column_names
-      all.each do |a|
-        csv << a.attributes.values_at(*column_names)
-      end
-    end
-  end
+
 
   # MONTH_RANGE = (7..24)
 

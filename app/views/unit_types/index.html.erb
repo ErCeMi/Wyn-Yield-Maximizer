@@ -10,6 +10,8 @@
       <th>Amount off</th>
       <th>Percentage off</th>
       <th>Growth Rate</th>
+      <th>Renewal Increase</th>
+      <th>Market Rate Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +24,8 @@
         <td><%= unit_type.amount_off %></td>
         <td><%= unit_type.percentage_off %></td>
         <td><%= unit_type.growth_rate %></td>
+        <td><%= unit_type.increase_amount %></td>
+        <td><%= unit_type.market_rate_date %></td>
         <td><%= link_to 'Show', unit_type %></td>
         <td><%= link_to 'Edit', edit_unit_type_path(unit_type) %></td>
         <td><%= link_to 'Destroy', unit_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>

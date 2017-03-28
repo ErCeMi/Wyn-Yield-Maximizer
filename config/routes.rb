@@ -17,6 +17,7 @@ Rails.application.routes.draw do
    post '/update' => 'properties#submit'
 
    get '/raw' => 'properties#raw'
+   get '/rawren' => 'properties#rawren'
 
 
   resources :properties
