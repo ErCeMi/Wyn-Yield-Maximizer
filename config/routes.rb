@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :property_names
   resources :unit_types
+  resources :properties
    root  to: "pages#home"
 
    get "/pages/*page" => "pages#home"
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
 
    get '/raw' => 'properties#raw'
    get '/rawren' => 'properties#rawren'
+
 
 
   resources :properties

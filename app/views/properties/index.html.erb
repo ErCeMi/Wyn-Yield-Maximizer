@@ -136,7 +136,7 @@
                   <% end %>
               <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(5).strftime("%Y%m") %>
                 <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
-                  <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent5(((property.unit_rent * ( 1.0 + ((property.move_out.year * 12 + property.move_out.month ) - (property.unit_type.market_rate_date.year * 12 + property.unit_type.market_rate_date.month)) /12 * property.unit_type.growth_rate )) - property.unit_type.amount_off - ( property.unit_rent * property.unit_type.percentage_off) ), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
+                  <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent5(((property.unit_rent * ( 1.0 + ((property.move_out.year * 12.0 + property.move_out.month ) - (property.unit_type.market_rate_date.year * 12.0 + property.unit_type.market_rate_date.month)) /12.0 * property.unit_type.growth_rate )) - property.unit_type.amount_off - ( property.unit_rent * property.unit_type.percentage_off) ), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
                   <% end %>
                   <%end %>
             <% end %>

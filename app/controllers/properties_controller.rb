@@ -84,6 +84,8 @@ class PropertiesController < ApplicationController
 
 
 
+
+
   # # inserted as an example of how to get an excel sheet
   # # as binary data
   # def get_exel_spread_sheet
