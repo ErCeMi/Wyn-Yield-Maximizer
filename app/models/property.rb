@@ -21,11 +21,14 @@ class Property < ApplicationRecord
   end
 
   ##
-  GROUP_VACANT =   "Vacant Unrented Not Ready" || "Vacant Unrented Ready"
-  GROUP_NOTICE = "Notice Unrented" 
+  GROUP_VACANT =   "Vacant Unrented Ready"
+  GROUP_NOTICE = "Notice Unrented"
   $premium = 1.015
-  def self.vacant
-    self.where(group: GROUP_VACANT)
+  def self.vacant_ready
+    self.where(group: "Vacant Unrented Ready")
+  end
+  def self.vacant_notready
+    self.where(group:  "Vacant Unrented Not Ready")
   end
 
   def self.notice
@@ -33,7 +36,7 @@ class Property < ApplicationRecord
   end
 
   def self.available
-    self.vacant.or(self.notice)
+    self.vacant_ready.or(self.notice).or(self.vacant_notready)
   end
 
   def self.renewing

@@ -40,6 +40,7 @@ require 'csv'
 require 'open-uri'
 
 Company.create(name: "UPM")
+Employee.create(name: "Ricardo Cuevas", email: "rcuevas@unitedpropertymgt.com", password_digest: "123", admin: 1, company_id: 1)
 
 csv_text1 = File.read(Rails.root.join('lib', 'seeds', 'PropName.csv'))
 csv1 = CSV.parse(csv_text1, :headers => true, :encoding => 'ISO-8859-1') #skip_blanks: true)#.reject { |row| row.all?(&:nil?) }
