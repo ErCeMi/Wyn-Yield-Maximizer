@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+
+          <table class="centered highlight responsive-table testclass">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Unit</th>
+                <th>Unit Type</th>
+                <th>Bedroom</th>
+                <th>3 months off</th>
+                <th>2 months off</th>
+                <th>1 month off</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+            <% Property.available_per_prop("Miami Bay Waterfront Midtown Residences").sort_by{ |k| k.move_out || DateTime.now }.each do |property| %>
+                <% if @ten1112lineunits.include? property.unit%>
+
+                    <tr>
+                        <td>Miami Bay</td>
+                        <td><%= property.unit %></td>
+                        <td><%= property.unit_type.unit_type %></td>
+                        <td><%= property.unit_type.bedroom %></td>
+                        <td></td>
+                        <td><%= (property.unit_rent * @twomonthsoff101112).round%></td>
+                        <td><%= (property.unit_rent * @onemonthoff101112).round%></td>
+                  </tr>
+
+                <% else %>
+
+                    <tr>
+                        <td>Miami Bay</td>
+                        <td><%= property.unit %></td>
+                        <td><%= property.unit_type.unit_type %></td>
+                        <td><%= property.unit_type.bedroom %></td>
+                        <td><%= (property.unit_rent * @threemonthsoff).round%></td>
+                        <td><%= (property.unit_rent * @twomonthsoff).round%></td>
+                        <td><%= (property.unit_rent * @onemonthoff).round%></td>
+
+
+                    </tr>
+
+
+              <% end %>
+            <%end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    </body>
+</html>

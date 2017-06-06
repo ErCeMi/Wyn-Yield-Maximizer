@@ -3,39 +3,12 @@
 
 <p id="notice"><%= notice %></p>
 
-<!-- Navbar goes here -->
 
-<!-- Page Layout here -->
-<!-- <ul id="slide-out" class="side-nav fixed">
-  <li><a href="#!">First Sidebar Link</a></li>
-  <li><a href="#!">Second Sidebar Link</a></li>
-</ul>
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-       -->
-<div class="row ">
-  <div class="col s12 m4 l2 "> <!-- Note that "m4 l3" was added -->
-    <div class="card ">
-      <div class="card-image">
-        <div class="transparency"></div>
-        <%= image_tag("available.jpg", :alt => "home decor") %>
-      </div>
-      <div class="card-content">
-      </div>
-      <div class="card-action">
-        <div class="container">
-        <a href="#">
-          <%= @current_user.company.name %>
-          Portfolio
-        </a>
-        </div>
-      </div>
-    </div>
+
     <div class="collection">
 
       <a class="collection-item" href="#modal1">Import CSV </a>
-      <a href="#!" class="collection-item"> Export CSV</a>
-      <a href="#!" class="collection-item">Print PDF</a>
-      <a href="#!" class="collection-item"> Settings</a>
+
     </div>
   </div>
 
@@ -54,97 +27,5 @@
   </div>
 
 
-  <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
-<h1>Available Properties</h1>
-    <!-- Teal page content
 
-          This content will be:
-      9-columns-wide on large screens,
-      8-columns-wide on medium screens,
-      12-columns-wide on small screens  -->
-    <div class="dropdown-menu">Please choose your portfolio</div>
-    <div class=" wth">
-      <% Property.building_names.each do |r| %>
-        <div class="col s3 blue-grey lighten-4 waves-effect waves-light btn-large <%=r%>"><h6><%=r%></h6></div>
-      <% end %>
-    </div>
-
-
-    <%(Property.building_names).each do |x| %>
-      <table class="<%= x %> centered highlight responsive-table testclass">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Unit</th>
-            <th>Market Price</th>
-            <th>Amount off</th>
-            <th>Percentage off </th>
-            <th>Unit Type</th>
-            <th>Groups</th>
-            <th>Available</th>
-            <th>Amenity</th>
-            <th>Days Vacant</th>
-            <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
-              <th><%= month %> mo.</th>
-            <% end %>
-          </tr>
-        </thead>
-        <tbody>
-        <% Property.available_per_prop(x).sort_by{ |k| k.move_out || DateTime.now }.each do |property| %>
-
-          <tr>
-            <td><%= x %></td>
-            <td><%= property.unit %></td>
-            <td><%=property.unit_rent %></td>
-            <td><%=property.unit_type.amount_off %></td>
-            <td><%=property.unit_type.percentage_off %> </td>
-            <td><%= property.unit_type.unit_type %></td>
-            <td><%= property.group %></td>
-            <% if property.move_out == nil %>
-              <td>available</td>
-            <% elsif property.move_out <= DateTime.now %>
-              <td>available</td>
-            <% else %>
-              <td><%= property.move_out.next_day(5) %></td>
-            <% end %>
-            <td><%= property.amenities %></td>
-            <td><%= property.days_vacant %></td>
-            <% if property.group ==   "Vacant Unrented Not Ready" ||  "Vacant Unrented Ready" %>
-              <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
-                <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent0(((property.unit_rent * ( 1.0 + ((property.move_out.year * 12.0 + property.move_out.month ) - (property.unit_type.market_rate_date.year * 12.0 + property.unit_type.market_rate_date.month)) / 12.0 * property.unit_type.growth_rate)) - property.unit_type.amount_off - ( property.unit_rent * property.unit_type.percentage_off) ), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
-              <% end %>
-            <% elsif property.group == "Notice Unrented"  %>
-              <% if property.move_out.next_day(5).strftime("%Y%m") <= DateTime.now.strftime("%Y%m") %>
-                <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
-                  <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent0(((property.unit_rent * ( 1.0 + ((property.move_out.year * 12.0 + property.move_out.month ) - (property.unit_type.market_rate_date.year * 12.0 + property.unit_type.market_rate_date.month)) / 12.0 * property.unit_type.growth_rate)) - property.unit_type.amount_off - ( property.unit_rent * property.unit_type.percentage_off) ), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
-                  <% end %>
-              <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(1).strftime("%Y%m") %>
-                <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
-                  <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent1(((property.unit_rent * ( 1.0 + ((property.move_out.year * 12.0 + property.move_out.month ) - (property.unit_type.market_rate_date.year * 12.0 + property.unit_type.market_rate_date.month)) /12.0 * property.unit_type.growth_rate)) - property.unit_type.amount_off - ( property.unit_rent * property.unit_type.percentage_off) ), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
-                  <% end %>
-              <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(2).strftime("%Y%m") %>
-                <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
-                  <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent2(((property.unit_rent * (1.0 + ((property.move_out.year * 12.0 + property.move_out.month ) - (property.unit_type.market_rate_date.year * 12.0 + property.unit_type.market_rate_date.month)) /12.0 * property.unit_type.growth_rate)) - property.unit_type.amount_off - ( property.unit_rent * property.unit_type.percentage_off) ), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
-                  <% end %>
-              <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(3).strftime("%Y%m") %>
-                <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
-                  <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent3(((property.unit_rent * (1.0 + ((property.move_out.year * 12.0 + property.move_out.month ) - (property.unit_type.market_rate_date.year * 12.0 + property.unit_type.market_rate_date.month)) /12.0 * property.unit_type.growth_rate)) - property.unit_type.amount_off - ( property.unit_rent * property.unit_type.percentage_off) ), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
-                  <% end %>
-              <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(4).strftime("%Y%m") %>
-                <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
-                  <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent4(((property.unit_rent * ( 1.0 + ((property.move_out.year * 12.0 + property.move_out.month ) - (property.unit_type.market_rate_date.year * 12.0 + property.unit_type.market_rate_date.month)) / 12.0 * property.unit_type.growth_rate)) - property.unit_type.amount_off - ( property.unit_rent * property.unit_type.percentage_off) ), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
-                  <% end %>
-              <% elsif property.move_out.next_day(5).strftime("%Y%m") == DateTime.now.next_month(5).strftime("%Y%m") %>
-                <% PropertyName.all[Property.building_names.index(x)].lease_terms.split(",").map{ |i| i.to_i}.each do |month| %>
-                  <th><%= number_to_currency @bed_premiums_per_building[x].calculate_rent5(((property.unit_rent * ( 1.0 + ((property.move_out.year * 12.0 + property.move_out.month ) - (property.unit_type.market_rate_date.year * 12.0 + property.unit_type.market_rate_date.month)) /12.0 * property.unit_type.growth_rate )) - property.unit_type.amount_off - ( property.unit_rent * property.unit_type.percentage_off) ), property.unit_type.bedroom.to_i, month), precision: 0 %></th>
-                  <% end %>
-                  <%end %>
-            <% end %>
-          </tr>
-
-          <% end %>
-      </tbody>
-    </table>
-    <% end %>
-  </div>
 </div>

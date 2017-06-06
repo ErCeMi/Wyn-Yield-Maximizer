@@ -40,7 +40,7 @@ require 'csv'
 require 'open-uri'
 
 Company.create(name: "UPM")
-Employee.create(name: "Ricardo Cuevas", email: "rcuevas@unitedpropertymgt.com", password_digest: "123", admin: 1, company_id: 1)
+Employee.create(name: "Ricardo Cuevas", email: "rcuevas@unitedpropertymgt.com", password: "123", admin: 1, company_id: 1)
 
 csv_text1 = File.read(Rails.root.join('lib', 'seeds', 'PropName.csv'))
 csv1 = CSV.parse(csv_text1, :headers => true, :encoding => 'ISO-8859-1') #skip_blanks: true)#.reject { |row| row.all?(&:nil?) }
@@ -60,7 +60,7 @@ end
 
 
 # Company.create(name: "UPM")
-csv_text2 = File.read(Rails.root.join('lib', 'seeds', 'unit_typeseed.csv'))
+csv_text2 = File.read(Rails.root.join('lib', 'seeds', 'specials.csv'))
 csv2 = CSV.parse(csv_text2, :headers => true, :encoding => 'ISO-8859-1') #skip_blanks: true)#.reject { |row| row.all?(&:nil?) }
 
 csv2.each do |row|
@@ -82,7 +82,7 @@ end
 
 
 
-csv_text3 = File.read(Rails.root.join('lib', 'seeds', 'Property(unit)seed.csv'))
+csv_text3 = File.read(Rails.root.join('lib', 'seeds', 'units.csv'))
 csv3 = CSV.parse(csv_text3, :headers => true, :encoding => 'ISO-8859-1') #skip_blanks: true)#.reject { |row| row.all?(&:nil?) }
 
 csv3.each do |row|
@@ -96,11 +96,10 @@ csv3.each do |row|
   t.unit_rent = row['unit_rent']
   t.status = row['status']
   t.days_vacant = row['days_vacant']
-  t.move_in = row['move_in'] ? Date.strptime(row['move_in'], '%m/%d/%y') : nil
   t.move_out = row['move_out'] ? Date.strptime(row['move_out'], '%m/%d/%y') : DateTime.now
-  t.lease_from = row['lease_from'] ? Date.strptime(row['lease_from'], '%m/%d/%y') : nil
   t.lease_to = row['lease_to'] ? Date.strptime(row['lease_to'], '%m/%d/%y') : nil
   t.amenities = row['amenities']
+  t.amenities_amount = row['amenities_amount']
   t.discounts = row['discounts']
   t.company_id = row['company_id']
   t.unit_type_id = row['unit_type_id']

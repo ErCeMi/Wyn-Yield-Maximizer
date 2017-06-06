@@ -42,16 +42,15 @@ ActiveRecord::Schema.define(version: 20170228223222) do
     t.integer  "unit_rent"
     t.string   "status"
     t.integer  "days_vacant"
-    t.date     "move_in"
     t.date     "move_out"
-    t.date     "lease_from"
     t.date     "lease_to"
     t.string   "amenities"
+    t.integer  "amenities_amount"
     t.integer  "discounts"
     t.integer  "company_id"
     t.integer  "unit_type_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["company_id"], name: "index_properties_on_company_id", using: :btree
     t.index ["unit_type_id"], name: "index_properties_on_unit_type_id", using: :btree
   end

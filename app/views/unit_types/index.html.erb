@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Prop<th>
       <th>Type</th>
       <th>Bedroom</th>
       <th>Amount off</th>
@@ -19,6 +20,7 @@
   <tbody>
     <% @unit_types.each do |unit_type| %>
       <tr>
+        <td><%= unit_type.property_name.name%><td>
         <td><%= unit_type.unit_type %></td>
         <td><%= unit_type.bedroom %></td>
         <td><%= unit_type.amount_off %></td>

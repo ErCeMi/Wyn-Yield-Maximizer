@@ -10,11 +10,10 @@ class CreateProperties < ActiveRecord::Migration[5.0]
       t.integer :unit_rent
       t.string :status
       t.integer :days_vacant
-      t.date :move_in
       t.date :move_out
-      t.date :lease_from
       t.date :lease_to
       t.string :amenities
+      t.integer :amenities_amount
       t.integer :discounts
       t.references :company, foreign_key: true
       t.references :unit_type, foreign_key: true

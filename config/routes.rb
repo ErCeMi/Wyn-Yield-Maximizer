@@ -2,12 +2,10 @@ Rails.application.routes.draw do
   resources :property_names
   resources :unit_types
   resources :properties
-   root  to: "pages#home"
+   root  to: "properties#index"
 
    get "/pages/*page" => "pages#home"
-   get "home", to: "pages#home"
-   get "blog", to: "pages#blog"
-   get "about", to: "pages#about"
+   
 
    get '/login' => 'sessions#new'
    post '/login' => 'sessions#create'
@@ -19,6 +17,7 @@ Rails.application.routes.draw do
 
    get '/raw' => 'properties#raw'
    get '/rawren' => 'properties#rawren'
+   get '/mbc' => 'properties#mbc'
 
 
 
